@@ -1,0 +1,26 @@
+<!doctype html>
+<title>homeControl</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='jquery.mobile-1.4.2.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='jquery-1.11.1.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.mobile-1.4.2.js') }}"></script>
+<script src="{{ url_for('static', filename='homecontrol.js') }}"></script>
+<div class=page data-role="page">
+    <div data-role="header">
+        <h1>homeControl</h1>
+        {% if not session.logged_in %}
+        <a href="{{ jqm_url('login') }}">log in</a>
+        {% else %}
+        <a href="{{ jqm_url('logout') }}">log out</a>
+        {% endif %}
+
+        {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+        {% endfor %}
+    </div>
+    <div class="ui-content">
+        {% block body %}{% endblock %}
+
+    </div>
+
+</div>
