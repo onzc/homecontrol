@@ -1,8 +1,11 @@
 __author__ = 'Andy'
 import os
 import homecontrol
+import user
 import unittest
 import tempfile
+import user
+import userfactory
 
 class homecontrolTestCase(unittest.TestCase):
 
@@ -11,6 +14,7 @@ class homecontrolTestCase(unittest.TestCase):
         homecontrol.app.config['TESTING'] = True
         self.app = homecontrol.app.test_client()
         homecontrol.init_db()
+        homecontrol.init_testdata()
 
     def tearDown(self):
         os.close(self.db_fd)
@@ -21,10 +25,6 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.app.get('/')
         assert 'Unbelievable.' in rv.data
 
-    def test_loadtestData(self):
-        homecontrol.init_testdata()
-        rv = self.app.get('/')
-        assert 'Unbelievable.' not in rv.data
 
     def test_login_logout(self):
         rv = self.login('1', 'p')
@@ -47,6 +47,22 @@ class homecontrolTestCase(unittest.TestCase):
     def logout(self):
         return self.app.get('/logout', follow_redirects=True)
 
+
+    def getuser(self, userid):
+        return self.app.get('/getuser', query_string = 'userid=' + str(userid), follow_redirects=True)
+
+    def adduser(self, username, password, firstname, lastname, usergroup):
+        return self.app.post('/adduser', data=dict(username=username, password=password, firstname=firstname, lastname=lastname, usergroup=usergroup),follow_redirects=True)
+
+
+    def testgetuser(self):
+        self.testadduser()
+        rv = self.getuser(1)
+        assert 'User Details' in rv.data
+
+    def testadduser(self):
+        rv = self.adduser('test','house','f','L', 1)
+        assert  rv
 
 if __name__ == '__main__':
     unittest.main()

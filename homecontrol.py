@@ -4,6 +4,8 @@ import os
 import sqlite3
 import random
 import datetime
+import user
+import userfactory
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash
 
@@ -97,6 +99,30 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(getjqm_url('show_home'))
+
+@app.route('/getuser', methods=['GET'])
+def getuser():
+    db= get_db()
+    uf = userfactory.Userfactory()
+    userid = int(request.args.get('userid'))
+    userdetails = uf.newuser(db, userid)
+    return render_template('userdetails.html', userdetails=userdetails)
+
+@app.route('/adduser', methods=['GET', 'POST'])
+def adduser():
+    error = None
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        usergroup = request.form['usergroup']
+        db = get_db()
+        uf = userfactory.Userfactory()
+        uf.createuser(db, username, password, firstname, lastname, usergroup)
+
+    return render_template('login.html', error=error)
+
 
 
 @app.context_processor
