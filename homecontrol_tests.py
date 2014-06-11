@@ -27,14 +27,14 @@ class homecontrolTestCase(unittest.TestCase):
 
 
     def test_login_logout(self):
-        rv = self.login('1', 'p')
+        rv = self.login('admin', 'p')
         assert 'You were logged in' in rv.data
         rv = self.logout()
         assert 'You were logged out' in rv.data
         rv = self.login('adminx', 'p')
-        assert 'Invalid username' in rv.data
-        rv = self.login('1', 'defaultx')
-        assert 'Invalid password' in rv.data
+        assert 'Invalid username or password' in rv.data
+        rv = self.login('admin', 'defaultx')
+        assert 'Invalid username or password' in rv.data
 
 
     def login(self, username, password):

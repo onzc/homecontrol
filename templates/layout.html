@@ -8,11 +8,15 @@
 <div class=page data-role="page">
     <div data-role="header">
         <h1>homeControl</h1>
-        {% if not session.logged_in %}
-        <a href="{{ jqm_url('login') }}">log in</a>
-        {% else %}
-        <a href="{{ jqm_url('logout') }}">log out</a>
-        {% endif %}
+            {% if session.logged_in %}
+                <a id='showSettings' class="ui-btn-left" href="void()" data-icon="gear" data-iconpos="notext">settings</a>
+            {% endif %}
+
+            {% if not session.logged_in %}
+            <a class="ui-btn-right" href="{{ jqm_url('login') }}">log in</a>
+            {% else %}
+            <a class="ui-btn-right" href="{{ jqm_url('logout') }}">log out</a>
+            {% endif %}
 
         {% for message in get_flashed_messages() %}
         <div class=flash>{{ message }}</div>

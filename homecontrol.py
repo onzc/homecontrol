@@ -83,14 +83,14 @@ def show_home():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
-            error = 'Invalid username'
-        elif request.form['password'] != app.config['PASSWORD']:
-            error = 'Invalid password'
-        else:
+        db= get_db()
+        uf = userfactory.Userfactory()
+        if uf.validuser(db, request.form['username'], request.form['password']):
             session['logged_in'] = True
             flash('You were logged in')
             return redirect(getjqm_url('show_home'))
+        else:
+            error = 'Invalid username or password'
     return render_template('login.html', error=error)
 
 
