@@ -97,9 +97,10 @@ def login():
         uf = userfactory.Userfactory()
         userid = uf.validuser(db, request.form['username'], request.form['password'])
         if userid > 0:
+            user = uf.getuser(db, userid)
             session['currentuserid'] = userid
             session['logged_in'] = True
-            flash('You were logged in')
+            flash('Logged in ' + user.first + ' ' + user.last)
             return redirect(getjqm_url('show_home'))
         else:
             error = 'Invalid username or password'
@@ -108,9 +109,13 @@ def login():
 
 @app.route('/logout')
 def logout():
+    userid = session['currentuserid']
+    uf = userfactory.Userfactory()
+    db= get_db()
+    user = uf.getuser(db, userid)
     session.pop('logged_in', None)
     session.pop('currentuserid', None)
-    flash('You were logged out')
+    flash('Logged out ' + user.first + ' ' + user.last)
     return redirect(getjqm_url('show_home'))
 
 @app.route('/getuser', methods=['GET'])

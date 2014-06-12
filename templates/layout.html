@@ -10,13 +10,17 @@
         <h1>homeControl</h1>
             {% if session.logged_in %}
                 <a id='showSettings' class="ui-btn-left" href="void()" data-icon="gear" data-iconpos="notext">settings</a>
-                <div>{{ user.username }}</div>
+                <div></div>
             {% endif %}
 
             {% if not session.logged_in %}
             <a class="ui-btn-right" href="{{ jqm_url('login') }}">log in</a>
             {% else %}
-            <a class="ui-btn-right" href="{{ jqm_url('logout') }}">log out</a>
+            <a class="ui-btn-right" href="{{ jqm_url('logout') }}">
+                log out:    {% if session.logged_in %}
+                                {{ user.first }}&nbsp;{{ user.last }}
+                            {% endif %}
+            </a>
             {% endif %}
 
         {% for message in get_flashed_messages() %}
