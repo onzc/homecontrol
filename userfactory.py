@@ -11,20 +11,21 @@ class Userfactory():
         return usr
 
 
-    def newuser(self, db, userid):
+    def getuser(self, db, userid):
         cur = db.execute('select user_id, user_name, password, first_name, last_name, user_group_id from users where user_id = ?',[userid])
         usrs = cur.fetchall()
         usr = usrs[0]
-        return user.User(self, usr['user_id'], usr['user_name'],usr['password'], usr['first_name'], usr['last_name'] )
+        return user.User( usr['user_id'], usr['user_name'],usr['password'], usr['first_name'], usr['last_name'],usr['user_group_id'] )
 
 
     def validuser(self, db, username, password):
         cur = db.execute('select * from users where user_name = ? and password = ? ',[username, password])
-        usr = cur.fetchall()
-        if len(usr)>0:
-            return True
+        usrs = cur.fetchall()
+        if len(usrs)>0:
+            usr = usrs[0]
+            return usr['user_id']
         else:
-            return False
+            return -1
 
 
     def createuser(self, db, username, password, firstname, lastname, usergroup):

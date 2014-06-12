@@ -76,7 +76,17 @@ def show_home():
     db = get_db()
     cur = db.execute('select room_id, name from rooms order by room_id asc')
     rooms = cur.fetchall()
-    return render_template('home.html', rooms=rooms)
+    lin = None
+    if 'currentuserid' in session:
+        lin = session['currentuserid']
+    else:
+        lin = False
+    if lin == True:
+        uf = userfactory.Userfactory()
+        user = uf.getuser(db,session['currentuserid'] )
+        return render_template('home.html',rooms=rooms, user=user)
+    else:
+        return render_template('home.html', rooms=rooms, user=None)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -85,7 +95,9 @@ def login():
     if request.method == 'POST':
         db= get_db()
         uf = userfactory.Userfactory()
-        if uf.validuser(db, request.form['username'], request.form['password']):
+        userid = uf.validuser(db, request.form['username'], request.form['password'])
+        if userid > 0:
+            session['currentuserid'] = userid
             session['logged_in'] = True
             flash('You were logged in')
             return redirect(getjqm_url('show_home'))
@@ -97,6 +109,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
+    session.pop('currentuserid', None)
     flash('You were logged out')
     return redirect(getjqm_url('show_home'))
 
@@ -105,7 +118,7 @@ def getuser():
     db= get_db()
     uf = userfactory.Userfactory()
     userid = int(request.args.get('userid'))
-    userdetails = uf.newuser(db, userid)
+    userdetails = uf.getuser(db, userid)
     return render_template('userdetails.html', userdetails=userdetails)
 
 @app.route('/adduser', methods=['GET', 'POST'])
@@ -131,17 +144,6 @@ def utility_processor():
         return getjqm_url(method)
 
     return dict(jqm_url=jqm_url)
-
-
-def send_url(method):
-
-    response = app.make_response(url_for(method))
-
-    response.headers.add('Last-Modified', datetime.datetime.now())
-    response.headers.add('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
-    response.headers.add('Pragma', 'no-cache')
-
-    return response
 
 
 def getjqm_url(method):

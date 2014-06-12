@@ -10,6 +10,7 @@
         <h1>homeControl</h1>
             {% if session.logged_in %}
                 <a id='showSettings' class="ui-btn-left" href="void()" data-icon="gear" data-iconpos="notext">settings</a>
+                <div>{{ user.username }}</div>
             {% endif %}
 
             {% if not session.logged_in %}
