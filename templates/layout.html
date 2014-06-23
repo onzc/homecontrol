@@ -6,22 +6,25 @@
 <script src="{{ url_for('static', filename='jquery.mobile-1.4.2.js') }}"></script>
 <script src="{{ url_for('static', filename='homecontrol.js') }}"></script>
 <div class=page data-role="page">
+
+
     <div data-role="header">
         <h1>homeControl</h1>
-            {% if session.logged_in %}
-                <a id='showSettings' class="ui-btn-left" href="void()" data-icon="gear" data-iconpos="notext">settings</a>
-                <div></div>
-            {% endif %}
+        {% if session.logged_in %}
+        <a href="#settingsMenu"  id='showSettings' class="ui-btn-left" data-icon="gear" data-iconpos="notext">settings</a>
 
-            {% if not session.logged_in %}
-            <a class="ui-btn-right" href="{{ jqm_url('login') }}">log in</a>
-            {% else %}
-            <a class="ui-btn-right" href="{{ jqm_url('logout') }}">
-                log out:    {% if session.logged_in %}
-                                {{ user.first }}&nbsp;{{ user.last }}
-                            {% endif %}
-            </a>
+        <div></div>
+        {% endif %}
+
+        {% if not session.logged_in %}
+        <a class="ui-btn-right" href="{{ jqm_url('login') }}">log in</a>
+        {% else %}
+        <a class="ui-btn-right" href="{{ jqm_url('logout') }}">
+            log out: {% if session.logged_in %}
+            {{ user.first }}&nbsp;{{ user.last }}
             {% endif %}
+        </a>
+        {% endif %}
 
         {% for message in get_flashed_messages() %}
         <div class=flash>{{ message }}</div>
@@ -31,5 +34,23 @@
         {% block body %}{% endblock %}
 
     </div>
+     <div data-role="panel" id="settingsMenu" data-display="overlay">
+        aaaaaa aaaa
+    </div>  <!-- /panel -->
 
+    <script>
+
+    $(document).ready(function () {
+        initLayout();
+    });
+
+    function initLayout() {
+      // $('#showSettings').on('click', function () {toggleSettingsMenu()})
+    }
+    function toggleSettingsMenu() {
+        alert('b')
+        $('#settingsMenu').panel("open")
+    }
+
+    </script>
 </div>
