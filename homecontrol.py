@@ -6,6 +6,9 @@ import random
 import datetime
 import user
 import userfactory
+import roomfactory
+import roomgroupfactory
+
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash
 
@@ -71,11 +74,17 @@ def close_db(error):
         g.sqlite_db.close()
 
 
+@app.route('/home')
 @app.route('/')
 def show_home():
+    # init_db()
+    #init_defaultdata()
+    #init_testdata()
     db = get_db()
-    cur = db.execute('select room_id, name from rooms order by room_id asc')
-    rooms = cur.fetchall()
+    rf = roomfactory.Roomfactory()
+    # cur = db.execute('select room_id, name from rooms order by room_id asc')
+    # rooms = cur.fetchall()
+    rooms = rf.getrooms(db)
     lin = None
     if 'currentuserid' in session:
         lin = session['currentuserid']
@@ -87,6 +96,8 @@ def show_home():
         return render_template('home.html',rooms=rooms, user=user)
     else:
         return render_template('home.html', rooms=rooms, user=None)
+
+
 @app.route('/addroom')
 def addroom():
     lin = None
@@ -98,11 +109,15 @@ def addroom():
     if lin == True:
         uf = userfactory.Userfactory()
         db= get_db()
+        rgf = roomgroupfactory.Roomgroupfactory()
+        roomgroups = rgf.getroomgroups(db)
         user = uf.getuser(db,  session['currentuserid'] )
-        return render_template('addroom.html', user=user)
+        return render_template('addroom.html', user=user, roomgroups=roomgroups)
     else:
          error = 'Not authorised'
     return render_template('home.html', error=error)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -132,6 +147,7 @@ def logout():
     flash('Logged out ' + user.first + ' ' + user.last)
     return redirect(getjqm_url('show_home'))
 
+
 @app.route('/getuser', methods=['GET'])
 def getuser():
     db= get_db()
@@ -139,13 +155,58 @@ def getuser():
     userid = int(request.args.get('userid'))
     userdetails = uf.getuser(db, userid)
     return render_template('userdetails.html', userdetails=userdetails)
-@app.route ('/createroom', methods=['GET', 'POST'])
+
+
+@app.route('/createroom', methods=['POST'])
 def createroom ():
     error = None
-    if request.method == 'POST':
-        roomname = request.form['roomname']
+    lin = None
+    if 'currentuserid' in session:
+        lin = session['currentuserid']
+    else:
+        lin = False
+    if lin == True:
+        if request.method == 'POST':
+            if 'saveroom' in request.form:
+                roomname = request.form['name']
+                roomgroups = []
+                for f in request.form:
+                    if f.startswith('checkbox_'):
+                        roomgroupid = f.replace('checkbox_', '')
+                        roomgroups.append(int(roomgroupid))
 
-    return render_template('login.html', error=error)
+                # need to check we have at least 1 room group here
+                rf = roomfactory.Roomfactory()
+                rf.createroom(get_db(), roomname, roomgroups)
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+    return show_home()
+
+
+@app.route('/getroom', methods=['GET'])
+def getroom():
+    db = get_db()
+    rf = roomfactory.Roomfactory()
+    roomid = int(request.args.get('roomid'))
+    roomdetails = rf.getroom(db, roomid)
+    lin = None
+    if 'currentuserid' in session:
+        lin = session['currentuserid']
+    else:
+        lin = False
+
+    if lin == True:
+        uf = userfactory.Userfactory()
+        db = get_db()
+        user = uf.getuser(db, session['currentuserid'])
+        return render_template('roomdetails.html', user=user, room=roomdetails)
+    else:
+        error = 'Not authorised'
+    return render_template('home.html', error=error)
+
+
 @app.route('/adduser', methods=['GET', 'POST'])
 def adduser():
     error = None

@@ -11,7 +11,7 @@ class homecontrolTestCase(unittest.TestCase):
 
     def setUp(self):
         self.db_fd, homecontrol.app.config['DATABASE'] = tempfile.mkstemp()
-        homecontrol.app.config['TESTING'] = True
+        # self.db_fd, homecontrol.app.config['DATABASE'] = 'C:/Users/Andy/Documents/pythonprojects/homecontrolTest'
         self.app = homecontrol.app.test_client()
         homecontrol.init_db()
         homecontrol.init_testdata()
@@ -51,23 +51,48 @@ class homecontrolTestCase(unittest.TestCase):
     def getuser(self, userid):
         return self.app.get('/getuser', query_string = 'userid=' + str(userid), follow_redirects=True)
 
+
+    def getroom(self, roomid):
+        return self.app.get('/getroom', query_string='roomid=' + str(roomid), follow_redirects=True)
+
+
     def adduser(self, username, password, firstname, lastname, usergroup):
         return self.app.post('/adduser', data=dict(username=username, password=password, firstname=firstname, lastname=lastname, usergroup=usergroup),follow_redirects=True)
 
+
+    def addroom(self, name):
+        return self.app.post('/createroom', data=dict(name=name, checkbox_1='on', saveroom='xx'), follow_redirects=True)
 
     def testgetuser(self):
         self.testadduser()
         rv = self.getuser(1)
         assert 'User Details' in rv.data
 
+
     def testadduser(self):
         rv = self.adduser('test','house','f','L', 1)
         assert  rv
+
+
     def testshowaddroom(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
         rv = self.app.get('/addroom')
         assert  'Add Room' in rv.data
+
+
+    def testgetroom(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.getroom(1)
+        assert 'Room Details' in rv.data
+
+
+    def testcreateroom(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.addroom('test room')
+        assert 'test room' in rv.data
 
 
 if __name__ == '__main__':

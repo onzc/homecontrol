@@ -1,8 +1,28 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h2>Add Room</h2>
-  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-  <form action="{{ jqm_url('createroom') }}" method=post>
-   <div>hello</div>
-  </form>
+<h2>Add Room</h2>
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+<form action="{{ jqm_url('createroom') }}" method=post>
+    <label for="name">Room Name:</label>
+    <input type="text" name="name" id="name" value="">
+
+    <div class="ui-field-contain">
+        <fieldset data-role="controlgroup">
+            <legend>Room Groups:</legend>
+            {% for roomgroup in roomgroups %}
+            <input type="checkbox" name="checkbox_{{ roomgroup.roomgroupid }}" id="checkbox_{{ roomgroup.roomgroupid }}"
+                   class="custom">
+            <label for="checkbox_{{ roomgroup.roomgroupid }}">{{ roomgroup.name }}</label>
+
+            {% else %}
+            <li><em>Unbelievable. No room groups found so far</em>
+                {% endfor %}
+
+
+        </fieldset>
+    </div>
+
+    <button type="submit" name="saveroom" value="saveroom">save</button>
+    <button type="cancel" name="cancelsaveroom">cancel</button>
+</form>
 {% endblock %}

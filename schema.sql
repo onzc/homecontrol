@@ -1,3 +1,17 @@
+drop table if exists room_roomgroup;
+create table room_roomgroup (
+    room_roomgroup_id integer primary key autoincrement,
+    roomgroup_id int,
+    room_id int
+);
+
+
+drop table if exists roomgroups;
+create table roomgroups (
+    roomgroup_id integer primary key autoincrement,
+    roomgroup_name text not null
+);
+
 drop table if exists rooms;
 create table rooms (
   room_id integer primary key autoincrement,

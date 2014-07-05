@@ -6,3 +6,4 @@ VALUES (2, 'User' );
 
 INSERT INTO user_groups (user_group_id ,group_name)
 VALUES (3, 'Guest' );
+
