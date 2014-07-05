@@ -28,9 +28,9 @@ class homecontrolTestCase(unittest.TestCase):
 
     def test_login_logout(self):
         rv = self.login('admin', 'p')
-        assert 'You were logged in' in rv.data
+        assert 'Logged in' in rv.data
         rv = self.logout()
-        assert 'You were logged out' in rv.data
+        assert 'Logged out' in rv.data
         rv = self.login('adminx', 'p')
         assert 'Invalid username or password' in rv.data
         rv = self.login('admin', 'defaultx')
@@ -63,6 +63,12 @@ class homecontrolTestCase(unittest.TestCase):
     def testadduser(self):
         rv = self.adduser('test','house','f','L', 1)
         assert  rv
+    def testshowaddroom(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.app.get('/addroom')
+        assert  'Add Room' in rv.data
+
 
 if __name__ == '__main__':
     unittest.main()

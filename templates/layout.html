@@ -11,7 +11,8 @@
     <div data-role="header">
         <h1>homeControl</h1>
         {% if session.logged_in %}
-        <a href="#settingsMenu"  id='showSettings' class="ui-btn-left" data-icon="gear" data-iconpos="notext">settings</a>
+        <a href="#settingsMenu" id='showSettings' class="ui-btn-left" data-icon="gear"
+           data-iconpos="notext">settings</a>
 
         <div></div>
         {% endif %}
@@ -34,9 +35,12 @@
         {% block body %}{% endblock %}
 
     </div>
-     <div data-role="panel" id="settingsMenu" data-display="overlay">
-        aaaaaa aaaa
-    </div>  <!-- /panel -->
+    <div data-role="panel" id="settingsMenu" data-display="overlay">
+        <a href="{{ jqm_url('addroom') }}" class="ui-btn ui-icon-plus ui-btn-icon-left">add room</a>
+        <a href="#" class="ui-btn ui-icon-plus ui-btn-icon-left">add device</a>
+        <a href="{{ jqm_url('adduser') }}" class="ui-btn ui-icon-plus ui-btn-icon-left">add user</a>
+    </div>
+    <!-- /panel -->
 
     <script>
 
@@ -45,12 +49,10 @@
     });
 
     function initLayout() {
-      // $('#showSettings').on('click', function () {toggleSettingsMenu()})
+
     }
-    function toggleSettingsMenu() {
-        alert('b')
-        $('#settingsMenu').panel("open")
-    }
+
+
 
     </script>
 </div>

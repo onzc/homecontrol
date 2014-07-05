@@ -87,8 +87,22 @@ def show_home():
         return render_template('home.html',rooms=rooms, user=user)
     else:
         return render_template('home.html', rooms=rooms, user=None)
+@app.route('/addroom')
+def addroom():
+    lin = None
+    if 'currentuserid' in session:
+        lin = session['currentuserid']
+    else:
+        lin = False
 
-
+    if lin == True:
+        uf = userfactory.Userfactory()
+        db= get_db()
+        user = uf.getuser(db,  session['currentuserid'] )
+        return render_template('addroom.html', user=user)
+    else:
+         error = 'Not authorised'
+    return render_template('home.html', error=error)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -125,7 +139,13 @@ def getuser():
     userid = int(request.args.get('userid'))
     userdetails = uf.getuser(db, userid)
     return render_template('userdetails.html', userdetails=userdetails)
+@app.route ('/createroom', methods=['GET', 'POST'])
+def createroom ():
+    error = None
+    if request.method == 'POST':
+        roomname = request.form['roomname']
 
+    return render_template('login.html', error=error)
 @app.route('/adduser', methods=['GET', 'POST'])
 def adduser():
     error = None
