@@ -1,20 +1,34 @@
 import room
-
+import roomgroupfactory
+import roomgroup
 
 class Roomfactory():
     def getrooms(self, db):
         cur = db.execute('select room_id, name from rooms order by room_id asc')
-        rooms = cur.fetchall()
+        roomsrows = cur.fetchall()
+        rooms = []
+        for roomsrow in roomsrows:
+            room = self.getroom(db, roomsrow['room_id'])
+            rooms.append(room)
         return rooms
 
 
     def getroom(self, db, roomid):
         cur = db.execute(
-            'select room_id, name , roomgroup_id , roomgroup_name  from rooms natural join room_roomgroup natural join roomgroups where room_id = ?',
-            [roomid])
+            'select room_id, name from rooms where room_id = ?', [roomid])
         rooms = cur.fetchall()
         rm = rooms[0]
-        return room.Room(rm['room_id'], rm['name'], rm['roomgroup_id'], rm['roomgroup_name'])
+        cur = db.execute(
+            'select room_roomgroup.roomgroup_id, room_roomgroup.room_id, roomgroups.roomgroup_name from room_roomgroup natural join roomgroups where room_roomgroup.room_id =?',
+            [roomid])
+        roomgrouprows = cur.fetchall()
+        roomgroups = []
+        rgf = roomgroupfactory.Roomgroupfactory
+        for row in roomgrouprows:
+            rmgrp = roomgroup.Roomgroup(row['roomgroup_id'], row['roomgroup_name'])
+            roomgroups.append(rmgrp)
+
+        return room.Room(rm['room_id'], rm['name'], roomgroups)
 
     def createroom(self, db, name, roomgroups):
         cur = db.execute('INSERT INTO rooms (name) VALUES (?)', [name])

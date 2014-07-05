@@ -5,8 +5,18 @@
   {% endif %}
   <ul data-role="listview" data-inset="true" data-shadow="false">
   {% for room in rooms %}
-    <li data-role="collapsible" data-iconpos="right" data-inset="false"><h2>{{ room.name }}</h2>
-  {% else %}
+      <div data-role="collapsible" data-iconpos="right" data-inset="false">
+          <h2>{{ room.name }}</h2>
+
+          <p>
+
+              {% for roomgroup in room.roomgroups %}
+              {{roomgroup.name}} &NonBreakingSpace;
+              {% endfor %}
+
+          </p>
+      </div>
+      {% else %}
     <li><em>Unbelievable.  No rooms found so far</em>
   {% endfor %}
   </ul>

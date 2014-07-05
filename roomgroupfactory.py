@@ -11,3 +11,7 @@ class Roomgroupfactory:
             l.append(rg)
 
         return l
+
+
+    def getroomgroup(self, roomgroupid, name):
+        return roomgroup.Roomgroup(roomgroupid, name)

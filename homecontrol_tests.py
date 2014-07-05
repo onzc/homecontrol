@@ -26,6 +26,12 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'Unbelievable.' in rv.data
 
 
+    def testHome(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        assert 'stair' in rv.data
+
+
     def test_login_logout(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data

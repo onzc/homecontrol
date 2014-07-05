@@ -1,11 +1,10 @@
 class Room:
     roomid = 0
     name = ''
-    roomgroupid = 0,
-    roomgroupname = ''
+    roomgroups = []
 
-    def __init__(self, roomid, name, roomgroupid, roomgroupname):
+    def __init__(self, roomid, name, roomgroups):
         self.roomid = roomid
         self.name = name
-        self.roomgroupid = roomgroupid
-        self.roomgroupname = roomgroupname
+        self.roomgroups = roomgroups
+
