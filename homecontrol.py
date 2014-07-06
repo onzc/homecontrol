@@ -191,32 +191,38 @@ def delete(item, id):
         return render_template('home.html', error=error)
 
 
-@app.route('/createroom', methods=['POST'])
-def createroom ():
-    error = None
-    lin = None
-    if 'currentuserid' in session:
-        lin = session['currentuserid']
-    else:
-        lin = False
-    if lin == True:
-        if request.method == 'POST':
-            if 'saveroom' in request.form:
-                roomname = request.form['name']
-                roomgroups = []
-                for f in request.form:
-                    if f.startswith('checkbox_'):
-                        roomgroupid = f.replace('checkbox_', '')
-                        roomgroups.append(int(roomgroupid))
-
-                # need to check we have at least 1 room group here
-                rf = roomfactory.RoomFactory()
-                rf.create_room(get_db(), roomname, roomgroups)
-            else:
-                return showrooms()
+@app.route('/create/<item>', methods=['POST'])
+def create(item):
+    if isloggedin() == True:
+        db = get_db()
+        item = item.lower()
+        if item == 'room':
+            return create_room(db)
+        elif item == 'roomgroup':
+            pass
+        elif item == 'device':
+            pass
+        elif item == 'user':
+            pass
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
+
+
+def create_room(db):
+    if 'save' in request.form:
+        roomname = request.form['name']
+        roomgroups = []
+        for f in request.form:
+            if f.startswith('checkbox_'):
+                roomgroupid = f.replace('checkbox_', '')
+                roomgroups.append(int(roomgroupid))
+
+        # need to check we have at least 1 room group here
+        rf = roomfactory.RoomFactory()
+        rf.create_room(db, roomname, roomgroups)
+
+    return showrooms()
 
 
 @app.route('/getroom', methods=['GET'])

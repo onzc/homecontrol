@@ -2,7 +2,7 @@
 {% block body %}
 <h2>Add Room</h2>
 {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-<form action="{{ jqm_url('createroom') }}" method=post>
+<form action="{{ url_for('create' , item='room' )}}" method=post>
     <label for="name">Room Name:</label>
     <input type="text" name="name" id="name" value="">
 
@@ -22,7 +22,7 @@
         </fieldset>
     </div>
 
-    <button type="submit" name="saveroom" value="saveroom">save</button>
-    <button type="cancel" name="cancelsaveroom">cancel</button>
+    <button type="submit" name="save" value="save">save</button>
+    <button type="cancel" name="cancel">cancel</button>
 </form>
 {% endblock %}

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c67101c8-c509-48b1-a0df-1f744204390f" name="Default" comment="room list with delete room method">
+    <list default="true" id="c67101c8-c509-48b1-a0df-1f744204390f" name="Default" comment="switch to route /add/&lt;item&gt;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homecontrol.db" afterPath="$PROJECT_DIR$/homecontrol.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/addroom.html" afterPath="$PROJECT_DIR$/templates/addroom.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homecontrol.py" afterPath="$PROJECT_DIR$/homecontrol.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homecontrol_tests.py" afterPath="$PROJECT_DIR$/homecontrol_tests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/roomlist.html" afterPath="$PROJECT_DIR$/templates/roomlist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="homecontrol.iws" />
@@ -28,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="homecontrol.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="homecontrol.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/homecontrol.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.285714" vertical-offset="1649" max-vertical-offset="4930">
-              <caret line="109" column="56" selection-start-line="109" selection-start-column="56" selection-end-line="109" selection-end-column="56" />
+            <state vertical-scroll-proportion="1.4068966" vertical-offset="2992" max-vertical-offset="5066">
+              <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
               <folding>
                 <element signature="e#38#47#0" expanded="true" />
               </folding>
@@ -40,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="runtime.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/jinja2/runtime.py">
+      <file leaf-file-name="addroom.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/addroom.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3027" max-vertical-offset="9860">
-              <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
+            <state vertical-scroll-proportion="-11.769231" vertical-offset="102" max-vertical-offset="561">
+              <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -53,8 +54,8 @@
       <file leaf-file-name="roomlist.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/roomlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="391">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="391">
+              <caret line="8" column="101" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="101" />
               <folding />
             </state>
           </provider>
@@ -93,8 +94,8 @@
       <file leaf-file-name="roomfactory.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roomfactory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="346" max-vertical-offset="850">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="431" max-vertical-offset="850">
+              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -102,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="homecontrol_tests.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="homecontrol_tests.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82608694" vertical-offset="1275" max-vertical-offset="2329">
-              <caret line="94" column="15" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1111" max-vertical-offset="2329">
+              <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
               <folding>
                 <element signature="e#20#29#0" expanded="true" />
               </folding>
@@ -151,15 +152,15 @@
         <option value="$PROJECT_DIR$/roomgroup.py" />
         <option value="$PROJECT_DIR$/schema.sql" />
         <option value="$PROJECT_DIR$/testdata.sql" />
-        <option value="$PROJECT_DIR$/templates/addroom.html" />
         <option value="$PROJECT_DIR$/room.py" />
         <option value="$PROJECT_DIR$/roomgroupfactory.py" />
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/layout.html" />
-        <option value="$PROJECT_DIR$/roomfactory.py" />
         <option value="$PROJECT_DIR$/templates/roomlist.html" />
-        <option value="$PROJECT_DIR$/homecontrol.py" />
+        <option value="$PROJECT_DIR$/roomfactory.py" />
         <option value="$PROJECT_DIR$/homecontrol_tests.py" />
+        <option value="$PROJECT_DIR$/templates/addroom.html" />
+        <option value="$PROJECT_DIR$/homecontrol.py" />
       </list>
     </option>
   </component>
@@ -279,7 +280,7 @@
       <recent name="C:\Users\Andy\Documents\pythonprojects\homecontrol\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest homecontrolTestCase.testshowaddroom">
+  <component name="RunManager" selected="Python.homecontrol">
     <configuration default="false" name="homecontrol" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -294,32 +295,6 @@
       <module name="homecontrol" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homecontrol.py" />
       <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PyDebugRunner" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PyDebugRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest homecontrolTestCase.testgetroom" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="homecontrol" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homecontrol_tests.py" />
-      <option name="CLASS_NAME" value="homecontrolTestCase" />
-      <option name="METHOD_NAME" value="testgetroom" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
       <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PyDebugRunner" />
@@ -398,6 +373,30 @@
       <option name="USE_PARAM" value="false" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest homecontrolTestCase.testcreateroom" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="homecontrol" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homecontrol_tests.py" />
+      <option name="CLASS_NAME" value="homecontrolTestCase" />
+      <option name="METHOD_NAME" value="testcreateroom" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
@@ -523,18 +522,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.homecontrol" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testgetroom" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testHome" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testshowaddroom" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testdeleteroom" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testHome" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testshowaddroom" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testdeleteroom" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testcreateroom" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testshowaddroom" />
-        <item index="1" class="java.lang.String" itemvalue="Python.homecontrol" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testdeleteroom" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testHome" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testgetroom" />
+        <item index="0" class="java.lang.String" itemvalue="Python.homecontrol" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testcreateroom" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testshowaddroom" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testdeleteroom" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testHome" />
       </list>
     </recent_temporary>
   </component>
@@ -588,7 +587,11 @@
       <created>1404633068587</created>
       <updated>1404633068587</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="switch to route /add/&lt;item&gt;">
+      <created>1404633599728</created>
+      <updated>1404633599728</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -605,7 +608,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39937106" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3207547" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3207547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3207547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -644,7 +647,8 @@
     <MESSAGE value="create room inserts into database" />
     <MESSAGE value="list roomgroups in home screen view. change what getrooms returns" />
     <MESSAGE value="room list with delete room method" />
-    <option name="LAST_COMMIT_MESSAGE" value="room list with delete room method" />
+    <MESSAGE value="switch to route /add/&lt;item&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="switch to route /add/&lt;item&gt;" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -664,7 +668,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="74" />
+      <option name="time" value="78" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -981,14 +985,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/addroom.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.9230769" vertical-offset="187" max-vertical-offset="561">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/roomgroup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="354">
@@ -1021,16 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/roomfactory.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="346" max-vertical-offset="850">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/jinja2/runtime.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3027" max-vertical-offset="9860">
@@ -1039,30 +1025,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/roomfactory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="431" max-vertical-offset="850">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/roomlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="391">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="391">
+          <caret line="8" column="101" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="101" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="992" max-vertical-offset="2329">
+          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+          <folding>
+            <element signature="e#20#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/addroom.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.769231" vertical-offset="102" max-vertical-offset="561">
+          <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/homecontrol.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.285714" vertical-offset="1649" max-vertical-offset="4930">
-          <caret line="109" column="56" selection-start-line="109" selection-start-column="56" selection-end-line="109" selection-end-column="56" />
+        <state vertical-scroll-proportion="1.4068966" vertical-offset="2992" max-vertical-offset="5066">
+          <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
           <folding>
             <element signature="e#38#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82608694" vertical-offset="1275" max-vertical-offset="2329">
-          <caret line="94" column="15" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="15" />
-          <folding>
-            <element signature="e#20#29#0" expanded="true" />
           </folding>
         </state>
       </provider>

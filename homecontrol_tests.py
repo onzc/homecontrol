@@ -71,7 +71,8 @@ class homecontrolTestCase(unittest.TestCase):
 
 
     def addroom(self, name):
-        return self.app.post('/createroom', data=dict(name=name, checkbox_1='on', saveroom='xx'), follow_redirects=True)
+        return self.app.post('/create/room', data=dict(name=name, checkbox_1='on', saveroom='xx'),
+                             follow_redirects=True)
 
 
     def delete(self, item, id):
