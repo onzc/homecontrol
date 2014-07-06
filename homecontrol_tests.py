@@ -6,6 +6,7 @@ import unittest
 import tempfile
 import user
 import userfactory
+from flask import Flask, url_for
 
 class homecontrolTestCase(unittest.TestCase):
 
@@ -65,9 +66,16 @@ class homecontrolTestCase(unittest.TestCase):
     def adduser(self, username, password, firstname, lastname, usergroup):
         return self.app.post('/adduser', data=dict(username=username, password=password, firstname=firstname, lastname=lastname, usergroup=usergroup),follow_redirects=True)
 
+    def showroomlist(self):
+        return self.app.get('/showrooms', follow_redirects=True)
+
 
     def addroom(self, name):
         return self.app.post('/createroom', data=dict(name=name, checkbox_1='on', saveroom='xx'), follow_redirects=True)
+
+
+    def delete(self, item, id):
+        return self.app.get('/delete/' + item + '/' + str(id))
 
     def testgetuser(self):
         self.testadduser()
@@ -99,6 +107,24 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'Logged in' in rv.data
         rv = self.addroom('test room')
         assert 'test room' in rv.data
+
+
+    def testshowroomlist(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.showroomlist()
+        assert 'Kitchen' in rv.data
+
+
+    def testdeleteroom(self):
+        homecontrol.init_db()
+        homecontrol.init_testdata()
+
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.delete('room', 2)
+        assert 'Kitchen' not in rv.data
+        assert 'Lounge' in rv.data
 
 
 if __name__ == '__main__':

@@ -2,18 +2,19 @@ import room
 import roomgroupfactory
 import roomgroup
 
-class Roomfactory():
-    def getrooms(self, db):
+
+class RoomFactory():
+    def get_rooms(self, db):
         cur = db.execute('select room_id, name from rooms order by room_id asc')
         roomsrows = cur.fetchall()
         rooms = []
         for roomsrow in roomsrows:
-            room = self.getroom(db, roomsrow['room_id'])
+            room = self.get_room(db, roomsrow['room_id'])
             rooms.append(room)
         return rooms
 
 
-    def getroom(self, db, roomid):
+    def get_room(self, db, roomid):
         cur = db.execute(
             'select room_id, name from rooms where room_id = ?', [roomid])
         rooms = cur.fetchall()
@@ -30,10 +31,15 @@ class Roomfactory():
 
         return room.Room(rm['room_id'], rm['name'], roomgroups)
 
-    def createroom(self, db, name, roomgroups):
+    def create_room(self, db, name, roomgroups):
         cur = db.execute('INSERT INTO rooms (name) VALUES (?)', [name])
         roomid = cur.lastrowid
         for roomgroupid in roomgroups:
             cur = db.execute('INSERT INTO room_roomgroup (roomgroup_id , room_id) VALUES (?,?)', [roomgroupid, roomid])
         db.commit()
         return roomid
+
+
+    def delete_room(self, db, roomid):
+        cur = db.execute('delete from rooms where rooms.room_id =?', [roomid])
+        db.commit()

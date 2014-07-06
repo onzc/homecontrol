@@ -81,10 +81,8 @@ def show_home():
     #init_defaultdata()
     #init_testdata()
     db = get_db()
-    rf = roomfactory.Roomfactory()
-    # cur = db.execute('select room_id, name from rooms order by room_id asc')
-    # rooms = cur.fetchall()
-    rooms = rf.getrooms(db)
+    rf = roomfactory.RoomFactory()
+    rooms = rf.get_rooms(db)
     lin = None
     if 'currentuserid' in session:
         lin = session['currentuserid']
@@ -98,6 +96,20 @@ def show_home():
         return render_template('home.html', rooms=rooms, user=None)
 
 
+@app.route('/showrooms')
+def showrooms():
+    if isloggedin() == True:
+        uf = userfactory.Userfactory()
+        db = get_db()
+        user = uf.getuser(db, session['currentuserid'])
+        rf = roomfactory.RoomFactory()
+        rooms = rf.get_rooms(db)
+        return render_template('roomlist.html', user=user, rooms=rooms)
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+
 @app.route('/addroom')
 def addroom():
     lin = None
@@ -108,7 +120,7 @@ def addroom():
 
     if lin == True:
         uf = userfactory.Userfactory()
-        db= get_db()
+        db = get_db()
         rgf = roomgroupfactory.Roomgroupfactory()
         roomgroups = rgf.getroomgroups(db)
         user = uf.getuser(db,  session['currentuserid'] )
@@ -157,6 +169,26 @@ def getuser():
     return render_template('userdetails.html', userdetails=userdetails)
 
 
+@app.route('/delete/<item>/<id>')
+def delete(item, id):
+    if isloggedin() == True:
+        db = get_db()
+        item = item.lower()
+        if item == 'room':
+            rf = roomfactory.RoomFactory()
+            rf.delete_room(db, id)
+            return showrooms()
+        elif item == 'roomgroup':
+            pass
+        elif item == 'device':
+            pass
+        elif item == 'user':
+            pass
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+
 @app.route('/createroom', methods=['POST'])
 def createroom ():
     error = None
@@ -176,21 +208,21 @@ def createroom ():
                         roomgroups.append(int(roomgroupid))
 
                 # need to check we have at least 1 room group here
-                rf = roomfactory.Roomfactory()
-                rf.createroom(get_db(), roomname, roomgroups)
+                rf = roomfactory.RoomFactory()
+                rf.create_room(get_db(), roomname, roomgroups)
+            else:
+                return showrooms()
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
-
-    return show_home()
 
 
 @app.route('/getroom', methods=['GET'])
 def getroom():
     db = get_db()
-    rf = roomfactory.Roomfactory()
+    rf = roomfactory.RoomFactory()
     roomid = int(request.args.get('roomid'))
-    roomdetails = rf.getroom(db, roomid)
+    roomdetails = rf.get_room(db, roomid)
     lin = None
     if 'currentuserid' in session:
         lin = session['currentuserid']
@@ -223,7 +255,6 @@ def adduser():
     return render_template('login.html', error=error)
 
 
-
 @app.context_processor
 def utility_processor():
     def jqm_url(method):
@@ -236,6 +267,15 @@ def getjqm_url(method):
     r = url_for(method)
     r = r + '?l=' + str( random.random())
     return r
+
+
+def isloggedin():
+    lin = None
+    if 'currentuserid' in session:
+        lin = True
+    else:
+        lin = False
+    return lin
 
 
 if __name__ == '__main__':
