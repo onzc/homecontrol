@@ -160,7 +160,7 @@ def add(item):
             rgf = roomgroupfactory.Roomgroupfactory()
             roomgroups = rgf.getroomgroups(db)
 
-            return render_template('addroom.html', user=user, roomgroups=roomgroups)
+            return render_template('addroom.html', user=user, roomgroups=roomgroups, room=None)
         elif item == 'roomgroup':
             pass
         elif item == 'device':
@@ -191,13 +191,13 @@ def delete(item, id):
         return render_template('home.html', error=error)
 
 
-@app.route('/create/<item>', methods=['POST'])
-def create(item):
+@app.route('/save/<item>', methods=['POST'])
+def save(item):
     if isloggedin() == True:
         db = get_db()
         item = item.lower()
         if item == 'room':
-            return create_room(db)
+            return save_room(db)
         elif item == 'roomgroup':
             pass
         elif item == 'device':
@@ -209,10 +209,11 @@ def create(item):
         return render_template('home.html', error=error)
 
 
-def create_room(db):
+def save_room(db):
     if 'save' in request.form:
         roomname = request.form['name']
         roomgroups = []
+        roomid = request.form['roomid']
         for f in request.form:
             if f.startswith('checkbox_'):
                 roomgroupid = f.replace('checkbox_', '')
@@ -220,7 +221,10 @@ def create_room(db):
 
         # need to check we have at least 1 room group here
         rf = roomfactory.RoomFactory()
-        rf.create_room(db, roomname, roomgroups)
+        if roomid == '':
+            rf.create_room(db, roomname, roomgroups)
+        else:
+            rf.update_room(db, roomid, roomname, roomgroups)
 
     return showrooms()
 

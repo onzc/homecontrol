@@ -71,9 +71,13 @@ class homecontrolTestCase(unittest.TestCase):
 
 
     def addroom(self, name):
-        return self.app.post('/create/room', data=dict(name=name, checkbox_1='on', saveroom='xx'),
+        return self.app.post('/save/room', data=dict(name=name, checkbox_1='on', save='xx', roomid=''),
                              follow_redirects=True)
 
+
+    def editroom(self, name, roomid):
+        return self.app.post('/save/room', data=dict(name=name, checkbox_2='on', save='xx', roomid=str(roomid)),
+                             follow_redirects=True)
 
     def delete(self, item, id):
         return self.app.get('/delete/' + item + '/' + str(id))
@@ -109,6 +113,15 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.addroom('test room')
         assert 'test room' in rv.data
 
+
+    def testupdateroom(self):
+        roomid = 1
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.editroom('edited room', roomid)
+        assert 'edited room' in rv.data
+        rv = self.app.get('/')
+        assert 'Upstairs' in rv.data
 
     def testshowroomlist(self):
         rv = self.login('admin', 'p')

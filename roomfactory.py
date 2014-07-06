@@ -31,6 +31,15 @@ class RoomFactory():
 
         return room.Room(rm['room_id'], rm['name'], roomgroups)
 
+
+    def update_room(self, db, roomid, name, roomgroups):
+        cur = db.execute('update rooms set name= ? where room_id= ?', [name, roomid])
+        cur = db.execute('delete from room_roomgroup where room_roomgroup.room_id = ?', [roomid])
+        for roomgroupid in roomgroups:
+            cur = db.execute('INSERT INTO room_roomgroup (roomgroup_id , room_id) VALUES (?,?)', [roomgroupid, roomid])
+        db.commit()
+
+
     def create_room(self, db, name, roomgroups):
         cur = db.execute('INSERT INTO rooms (name) VALUES (?)', [name])
         roomid = cur.lastrowid
