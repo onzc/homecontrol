@@ -91,8 +91,8 @@ class homecontrolTestCase(unittest.TestCase):
     def testshowaddroom(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.app.get('/addroom')
-        assert  'Add Room' in rv.data
+        rv = self.app.get('/add/room')
+        assert 'Add Room' in rv.data
 
 
     def testgetroom(self):

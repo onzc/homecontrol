@@ -14,5 +14,5 @@
     <li><em>Unbelievable. No rooms found so far</em>
         {% endfor %}
 </ul>
-<a href="{{ jqm_url('addroom') }}" class="ui-btn ui-icon-plus ui-btn-icon-left">add room</a>
+<a href="{{ url_for('add' , item='room' )}}" class="ui-btn ui-icon-plus ui-btn-icon-left">add room</a>
 {% endblock %}

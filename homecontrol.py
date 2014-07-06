@@ -110,26 +110,6 @@ def showrooms():
         return render_template('home.html', error=error)
 
 
-@app.route('/addroom')
-def addroom():
-    lin = None
-    if 'currentuserid' in session:
-        lin = session['currentuserid']
-    else:
-        lin = False
-
-    if lin == True:
-        uf = userfactory.Userfactory()
-        db = get_db()
-        rgf = roomgroupfactory.Roomgroupfactory()
-        roomgroups = rgf.getroomgroups(db)
-        user = uf.getuser(db,  session['currentuserid'] )
-        return render_template('addroom.html', user=user, roomgroups=roomgroups)
-    else:
-         error = 'Not authorised'
-    return render_template('home.html', error=error)
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -168,6 +148,28 @@ def getuser():
     userdetails = uf.getuser(db, userid)
     return render_template('userdetails.html', userdetails=userdetails)
 
+
+@app.route('/add/<item>')
+def add(item):
+    if isloggedin() == True:
+        db = get_db()
+        uf = userfactory.Userfactory()
+        user = uf.getuser(db, session['currentuserid'])
+        item = item.lower()
+        if item == 'room':
+            rgf = roomgroupfactory.Roomgroupfactory()
+            roomgroups = rgf.getroomgroups(db)
+
+            return render_template('addroom.html', user=user, roomgroups=roomgroups)
+        elif item == 'roomgroup':
+            pass
+        elif item == 'device':
+            pass
+        elif item == 'user':
+            pass
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
 
 @app.route('/delete/<item>/<id>')
 def delete(item, id):
