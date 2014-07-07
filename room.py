@@ -8,3 +8,12 @@ class Room:
         self.name = name
         self.roomgroups = roomgroups
 
+
+    def is_member_of_roomgroup(self, roomgroupid):
+        r = False
+        for roomgroup in self.roomgroups:
+            if roomgroupid == roomgroup.roomgroupid:
+                r = True
+                break
+
+        return r

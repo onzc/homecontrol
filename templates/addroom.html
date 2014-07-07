@@ -1,17 +1,23 @@
 {% extends "layout.html" %}
 {% block body %}
+{% if room is none %}
 <h2>Add Room</h2>
+{% else %}
+<h2>Edit Room</h2>
+{% endif %}
 {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
 <form action="{{ url_for('save' , item='room' )}}" method=post>
     <label for="name">Room Name:</label>
-    <input type="text" name="name" id="name" value="">
+    <input type="text" name="name" id="name" value="{{ room.name }}">
 
     <div class="ui-field-contain">
         <fieldset data-role="controlgroup">
             <legend>Room Groups:</legend>
             {% for roomgroup in roomgroups %}
             <input type="checkbox" name="checkbox_{{ roomgroup.roomgroupid }}" id="checkbox_{{ roomgroup.roomgroupid }}"
-                   class="custom">
+                   class="custom"
+            {% if room is none %}{% else %} {% if room.is_member_of_roomgroup(roomgroup.roomgroupid) == true %} checked
+            {% endif %}{% endif %} >
             <label for="checkbox_{{ roomgroup.roomgroupid }}">{{ roomgroup.name }}</label>
 
             {% else %}

@@ -6,7 +6,8 @@
 <ul data-role="listview" data-inset="true" data-shadow="false">
     {% for room in rooms %}
 
-    <li><a href="#">{{ room.name }}</a><a href="{{ url_for('delete' , item='room', id=room.roomid )}}"
+    <li><a href="{{ url_for('edit' , item='room', id=room.roomid )}}">{{ room.name }}</a><a
+            href="{{ url_for('delete' , item='room', id=room.roomid )}}"
                                           data-icon="delete"></a></li>
 
 

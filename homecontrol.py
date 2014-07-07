@@ -149,6 +149,30 @@ def getuser():
     return render_template('userdetails.html', userdetails=userdetails)
 
 
+@app.route('/edit/<item>/<id>')
+def edit(item, id):
+    if isloggedin() == True:
+        db = get_db()
+        uf = userfactory.Userfactory()
+        user = uf.getuser(db, session['currentuserid'])
+        item = item.lower()
+        if item == 'room':
+            rgf = roomgroupfactory.Roomgroupfactory()
+            roomgroups = rgf.getroomgroups(db)
+            rf = roomfactory.RoomFactory()
+            room = rf.get_room(db, id)
+            return render_template('addroom.html', user=user, roomgroups=roomgroups, room=room)
+        elif item == 'roomgroup':
+            pass
+        elif item == 'device':
+            pass
+        elif item == 'user':
+            pass
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+
 @app.route('/add/<item>')
 def add(item):
     if isloggedin() == True:
