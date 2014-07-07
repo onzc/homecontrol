@@ -24,7 +24,7 @@ class RoomFactory():
             [roomid])
         roomgrouprows = cur.fetchall()
         roomgroups = []
-        rgf = roomgroupfactory.Roomgroupfactory
+
         for row in roomgrouprows:
             rmgrp = roomgroup.Roomgroup(row['roomgroup_id'], row['roomgroup_name'])
             roomgroups.append(rmgrp)
@@ -51,4 +51,5 @@ class RoomFactory():
 
     def delete_room(self, db, roomid):
         cur = db.execute('delete from rooms where rooms.room_id =?', [roomid])
+        cur = db.execute('delete from room_roomgroup where room_id =?', [roomid])
         db.commit()

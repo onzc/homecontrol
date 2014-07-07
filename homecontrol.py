@@ -8,6 +8,8 @@ import user
 import userfactory
 import roomfactory
 import roomgroupfactory
+import devicefactory
+import devicegroupfactory
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash
@@ -77,9 +79,9 @@ def close_db(error):
 @app.route('/home')
 @app.route('/')
 def show_home():
-    # init_db()
-    #init_defaultdata()
-    #init_testdata()
+    init_db()
+    init_defaultdata()
+    init_testdata()
     db = get_db()
     rf = roomfactory.RoomFactory()
     rooms = rf.get_rooms(db)
@@ -96,8 +98,20 @@ def show_home():
         return render_template('home.html', rooms=rooms, user=None)
 
 
-@app.route('/showrooms')
-def showrooms():
+def device_list():
+    if isloggedin() == True:
+        uf = userfactory.Userfactory()
+        db = get_db()
+        user = uf.getuser(db, session['currentuserid'])
+        df = devicefactory.DeviceFactory()
+        devices = df.get_devices(db)
+        return render_template('devicelist.html', user=user, devices=devices)
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+
+def room_list():
     if isloggedin() == True:
         uf = userfactory.Userfactory()
         db = get_db()
@@ -149,6 +163,26 @@ def getuser():
     return render_template('userdetails.html', userdetails=userdetails)
 
 
+@app.route('/list/<item>')
+def list(item):
+    if isloggedin() == True:
+        db = get_db()
+        uf = userfactory.Userfactory()
+        user = uf.getuser(db, session['currentuserid'])
+        item = item.lower()
+        if item == 'room':
+            return room_list()
+        elif item == 'roomgroup':
+            pass
+        elif item == 'device':
+            return device_list()
+        elif item == 'user':
+            pass
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+
 @app.route('/edit/<item>/<id>')
 def edit(item, id):
     if isloggedin() == True:
@@ -165,7 +199,11 @@ def edit(item, id):
         elif item == 'roomgroup':
             pass
         elif item == 'device':
-            pass
+            dgf = devicegroupfactory.DeviceGroupFactory()
+            devicegroups = dgf.get_devicegroups(db)
+            df = devicefactory.DeviceFactory()
+            device = df.get_device(db, id)
+            return render_template('addeditdevice.html', user=user, devicegroups=devicegroups, device=device)
         elif item == 'user':
             pass
     else:
@@ -188,7 +226,10 @@ def add(item):
         elif item == 'roomgroup':
             pass
         elif item == 'device':
-            pass
+            dgf = devicegroupfactory.DeviceGroupFactory()
+            devicegroups = dgf.get_devicegroups(db)
+            df = devicefactory.DeviceFactory()
+            return render_template('addeditdevice.html', user=user, devicegroups=devicegroups, device=None)
         elif item == 'user':
             pass
     else:
@@ -203,11 +244,13 @@ def delete(item, id):
         if item == 'room':
             rf = roomfactory.RoomFactory()
             rf.delete_room(db, id)
-            return showrooms()
+            return room_list()
         elif item == 'roomgroup':
             pass
         elif item == 'device':
-            pass
+            df = devicefactory.DeviceFactory()
+            df.delete(db, id)
+            return device_list()
         elif item == 'user':
             pass
     else:
@@ -225,12 +268,34 @@ def save(item):
         elif item == 'roomgroup':
             pass
         elif item == 'device':
-            pass
+            return save_device(db)
         elif item == 'user':
             pass
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
+
+
+def save_device(db):
+    if 'save' in request.form:
+        devicename = request.form['name']
+        devicegroups = []
+        deviceid = request.form['deviceid']
+        address = request.form['address']
+        type = request.form['type']
+        for f in request.form:
+            if f.startswith('checkbox_'):
+                devicegroupid = f.replace('checkbox_', '')
+                devicegroups.append(int(devicegroupid))
+
+        # need to check we have at least 1 group here
+        df = devicefactory.DeviceFactory()
+        if deviceid == '':
+            df.create(db, devicename, address, type, devicegroups)
+        else:
+            df.update(db, deviceid, devicename, address, type, devicegroups)
+
+    return device_list()
 
 
 def save_room(db):
@@ -250,7 +315,7 @@ def save_room(db):
         else:
             rf.update_room(db, roomid, roomname, roomgroups)
 
-    return showrooms()
+    return room_list()
 
 
 @app.route('/getroom', methods=['GET'])

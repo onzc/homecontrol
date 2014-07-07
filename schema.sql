@@ -1,3 +1,25 @@
+drop table if exists device;
+drop table if exists devices;
+create table devices (
+    device_id integer primary key autoincrement,
+    devicename text not null,
+    deviceaddress text not null,
+    devicetype text not null
+);
+
+drop table if exists devicegroups;
+create table devicegroups (
+    devicegroup_id integer primary key autoincrement,
+    devicegroupname text not null
+);
+
+drop table if exists device_devicegroup;
+create table device_devicegroup (
+    device_devicegroup_id integer primary key autoincrement,
+    devicegroup_id integer,
+    device_id integer
+);
+
 drop table if exists room_roomgroup;
 create table room_roomgroup (
     room_roomgroup_id integer primary key autoincrement,

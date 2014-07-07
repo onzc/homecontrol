@@ -66,9 +66,24 @@ class homecontrolTestCase(unittest.TestCase):
     def adduser(self, username, password, firstname, lastname, usergroup):
         return self.app.post('/adduser', data=dict(username=username, password=password, firstname=firstname, lastname=lastname, usergroup=usergroup),follow_redirects=True)
 
-    def showroomlist(self):
-        return self.app.get('/showrooms', follow_redirects=True)
+    def roomlist(self):
+        return self.app.get('/list/room', follow_redirects=True)
 
+
+    def devicelist(self):
+        return self.app.get('/list/device', follow_redirects=True)
+
+
+    def add_device(self, name, address, type):
+        return self.app.post('/save/device',
+                             data=dict(name=name, checkbox_1='on', save='xx', deviceid='', address=address, type=type),
+                             follow_redirects=True)
+
+    def edit_device(self, deviceid, name, address, type):
+        return self.app.post('/save/device',
+                             data=dict(name=name, checkbox_1='on', save='xx', deviceid=str(deviceid), address=address,
+                                       type=type),
+                             follow_redirects=True)
 
     def addroom(self, name):
         return self.app.post('/save/room', data=dict(name=name, checkbox_1='on', save='xx', roomid=''),
@@ -78,6 +93,7 @@ class homecontrolTestCase(unittest.TestCase):
     def editroom(self, name, roomid):
         return self.app.post('/save/room', data=dict(name=name, checkbox_2='on', save='xx', roomid=str(roomid)),
                              follow_redirects=True)
+
 
     def delete(self, item, id):
         return self.app.get('/delete/' + item + '/' + str(id))
@@ -91,6 +107,35 @@ class homecontrolTestCase(unittest.TestCase):
     def testadduser(self):
         rv = self.adduser('test','house','f','L', 1)
         assert  rv
+
+
+    def test_show_edit_device(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.app.get('edit/device/1')
+        assert 'simple switch' in rv.data
+
+
+    def test_create_device(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.add_device('test device', 'test address', 'test type')
+        assert 'test device' in rv.data
+
+
+    def test_update_device(self):
+        deviceid = 1
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.edit_device(deviceid, 'edited device', 'edited address', 'edited type')
+        assert 'edited device' in rv.data
+
+
+    def test_show_add_device(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.app.get('add/device')
+        assert 'Add Device' in rv.data
 
 
     def testshowaddroom(self):
@@ -121,13 +166,29 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.editroom('edited room', roomid)
         assert 'edited room' in rv.data
         rv = self.app.get('/')
-        assert 'Upstairs' in rv.data
+        assert 'stairs' in rv.data
 
-    def testshowroomlist(self):
+    def testroomlist(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.showroomlist()
+        rv = self.roomlist()
         assert 'Kitchen' in rv.data
+
+
+    def test_device_list(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.devicelist()
+        assert 'simple switch' in rv.data
+
+
+    def test_delete_device(self):
+        homecontrol.init_db()
+        homecontrol.init_testdata()
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.delete('device', 1)
+        assert 'simple switch' not in rv.data
 
 
     def testdeleteroom(self):

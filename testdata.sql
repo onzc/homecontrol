@@ -1,3 +1,15 @@
+INSERT INTO devicegroups (devicegroupname)
+VALUES ('Sockets');
+
+INSERT INTO devices (devicename, deviceaddress, devicetype)
+VALUES ('simple switch', '01 01 01 01 01', 'on/off');
+
+INSERT INTO device_devicegroup (devicegroup_id ,device_id)
+VALUES (1,1);
+
+INSERT INTO devicegroups (devicegroupname)
+VALUES ('Lights');
+
 INSERT INTO roomgroups (roomgroup_name)
 VALUES ('Downstairs');
 
