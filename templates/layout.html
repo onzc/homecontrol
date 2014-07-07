@@ -8,15 +8,30 @@
 <div class=page data-role="page" data-url="{{ request.path }}">
 
 
-<div data-role="header">
+    <div data-role="header">
         <h1>homeControl</h1>
         {% if session.logged_in %}
-        <a href="#settingsMenu" id='showSettings' class="ui-btn-left" data-icon="gear"
+
+        <a href="{{ jqm_url('show_home') }}" id='showHome' class="ui-btn-left" data-icon="home"
+           data-iconpos="notext">home</a>
+        <a href="#settingsMenu" id='showSettings' class="ui-btn-right" data-icon="gear"
            data-iconpos="notext">settings</a>
+
 
         <div></div>
         {% endif %}
 
+
+        {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+        {% endfor %}
+    </div>
+    <div class="ui-content">
+        {% block body %}{% endblock %}
+
+    </div>
+
+    <div data-role="footer">
         {% if not session.logged_in %}
         <a class="ui-btn-right" href="{{ jqm_url('login') }}">log in</a>
         {% else %}
@@ -26,14 +41,6 @@
             {% endif %}
         </a>
         {% endif %}
-
-        {% for message in get_flashed_messages() %}
-        <div class=flash>{{ message }}</div>
-        {% endfor %}
-    </div>
-    <div class="ui-content">
-        {% block body %}{% endblock %}
-
     </div>
     <div data-role="panel" id="settingsMenu" data-display="overlay">
         <a href="{{ jqm_url('showrooms') }}" class="ui-btn ui-icon-plus ui-btn-icon-left">rooms</a>
@@ -52,6 +59,8 @@
     function initLayout() {
 
     }
+
+
 
 
 
