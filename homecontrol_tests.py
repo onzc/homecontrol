@@ -74,14 +74,16 @@ class homecontrolTestCase(unittest.TestCase):
         return self.app.get('/list/device', follow_redirects=True)
 
 
-    def add_device(self, name, address, type):
+    def add_device(self, name, address, subid, type):
         return self.app.post('/save/device',
-                             data=dict(name=name, checkbox_1='on', save='xx', deviceid='', address=address, type=type),
+                             data=dict(name=name, checkbox_1='on', save='xx', deviceid='', address=address, subid=subid,
+                                       type=type),
                              follow_redirects=True)
 
-    def edit_device(self, deviceid, name, address, type):
+    def edit_device(self, deviceid, name, address, subid, type):
         return self.app.post('/save/device',
                              data=dict(name=name, checkbox_1='on', save='xx', deviceid=str(deviceid), address=address,
+                                       subid=subid,
                                        type=type),
                              follow_redirects=True)
 
@@ -119,7 +121,7 @@ class homecontrolTestCase(unittest.TestCase):
     def test_create_device(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.add_device('test device', 'test address', 'test type')
+        rv = self.add_device('test device', 1, 2, 'test type')
         assert 'test device' in rv.data
 
 
@@ -127,7 +129,7 @@ class homecontrolTestCase(unittest.TestCase):
         deviceid = 1
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.edit_device(deviceid, 'edited device', 'edited address', 'edited type')
+        rv = self.edit_device(deviceid, 'edited device', 1, 2, 'edited type')
         assert 'edited device' in rv.data
 
 

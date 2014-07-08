@@ -3,7 +3,8 @@ drop table if exists devices;
 create table devices (
     device_id integer primary key autoincrement,
     devicename text not null,
-    deviceaddress text not null,
+    deviceaddress int not null,
+    devicesubid int not null,
     devicetype text not null
 );
 
