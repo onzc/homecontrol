@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c67101c8-c509-48b1-a0df-1f744204390f" name="Default" comment="refactor device address to be address and sub address.&#10;switch device type to be radio button">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homecontrol.db" afterPath="$PROJECT_DIR$/homecontrol.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homecontrol_tests.py" afterPath="$PROJECT_DIR$/homecontrol_tests.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="homecontrol.iws" />
@@ -28,8 +30,8 @@
       <file leaf-file-name="homecontrol.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/homecontrol.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4709" max-vertical-offset="6409">
-              <caret line="314" column="13" selection-start-line="295" selection-start-column="55" selection-end-line="314" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4726" max-vertical-offset="6426">
+              <caret line="315" column="13" selection-start-line="290" selection-start-column="0" selection-end-line="315" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -45,21 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="homecontrol_tests.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="homecontrol_tests.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2329" max-vertical-offset="3485">
-              <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7714286" vertical-offset="2924" max-vertical-offset="3587">
+              <caret line="206" column="0" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,10 +67,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="device.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="device.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/device.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36348686" vertical-offset="0" max-vertical-offset="608">
+            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="493">
               <caret line="13" column="17" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="17" />
               <folding />
             </state>
@@ -593,18 +585,13 @@
       <created>1404839466982</created>
       <updated>1404839466982</updated>
     </task>
-    <task id="LOCAL-00018" summary="refactor device address to be address and sub address.&#10;switch device type to be radio button">
-      <created>1404983553501</created>
-      <updated>1404983553501</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -619,6 +606,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25157234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -668,7 +656,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/homecontrol_tests.py</url>
-          <line>99</line>
+          <line>101</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -678,7 +666,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/homecontrol.py</url>
-          <line>312</line>
+          <line>313</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -694,6 +682,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/testdata.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="340">
+          <caret line="8" column="37" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="1258">
@@ -1014,6 +1009,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/device.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="493">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/devicefactory.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="1071">
@@ -1030,34 +1033,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/homecontrol.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4709" max-vertical-offset="6409">
-          <caret line="314" column="13" selection-start-line="295" selection-start-column="55" selection-end-line="314" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="4726" max-vertical-offset="6426">
+          <caret line="315" column="13" selection-start-line="290" selection-start-column="0" selection-end-line="315" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2890" max-vertical-offset="3485">
-          <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/device.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36348686" vertical-offset="0" max-vertical-offset="608">
-          <caret line="13" column="17" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.7714286" vertical-offset="2924" max-vertical-offset="3587">
+          <caret line="206" column="0" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
           <folding />
         </state>
       </provider>

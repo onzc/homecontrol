@@ -282,7 +282,8 @@ def save_device(db):
         devicegroups = []
         deviceid = request.form['deviceid']
         address = request.form['address']
-        type = request.form['type']
+        subid = request.form['subid']
+        devicetype = request.form['devicetype']
         for f in request.form:
             if f.startswith('checkbox_'):
                 devicegroupid = f.replace('checkbox_', '')
@@ -291,9 +292,9 @@ def save_device(db):
         # need to check we have at least 1 group here
         df = devicefactory.DeviceFactory()
         if deviceid == '':
-            df.create(db, devicename, address, type, devicegroups)
+            df.create(db, devicename, address, subid, devicetype, devicegroups)
         else:
-            df.update(db, deviceid, devicename, address, type, devicegroups)
+            df.update(db, deviceid, devicename, address, subid, devicetype, devicegroups)
 
     return device_list()
 
