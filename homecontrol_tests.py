@@ -6,6 +6,9 @@ import unittest
 import tempfile
 import user
 import userfactory
+import serial
+import time
+import serialControl
 from flask import Flask, url_for
 
 class homecontrolTestCase(unittest.TestCase):
@@ -197,6 +200,37 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'Kitchen' not in rv.data
         assert 'Lounge' in rv.data
 
+
+    def test_serial_on(self):
+        on = 'SEND,0,0,0,1,0,3,7,2,10,13|'
+        off = 'SEND,0,0,0,0,0,3,7,2,10,13|'
+        # self.send_serial(on)
+        sc = serialControl.SerialControl()
+        sc.send_single_message(on)
+
+    def test_serial_off(self):
+        on = 'SEND,0,0,0,1,0,3,7,2,10,13|'
+        off = 'SEND,0,0,0,0,0,3,7,2,10,13|'
+        self.send_serial(off)
+
+        sc = serialControl.SerialControl()
+        sc.send_single_message(off)
+
+    def send_serial(self, msg):
+        ser = serial.Serial(8, 9600)  # open serial port
+        time.sleep(1)
+        s = ''
+        while 'READY' not in s:
+            s = ser.readline()
+            print s
+
+        print "sending"
+        ser.write(msg)  # write a string
+        print "sent"
+        while "send end" not in s:
+            s = ser.readline()
+
+        ser.close()  # close port
 
 if __name__ == '__main__':
     unittest.main()
