@@ -71,17 +71,17 @@ class homecontrolTestCase(unittest.TestCase):
         return self.app.get('/list/device', follow_redirects=True)
 
 
-    def add_device(self, name, address, subid, devicetype):
+    def add_device(self, name, address, subid, devicetype, paired):
         return self.app.post('/save/device',
                              data=dict(name=name, checkbox_1='on', save='xx', deviceid='', address=address, subid=subid,
-                                       devicetype=devicetype),
+                                       devicetype=devicetype, paired=paired),
                              follow_redirects=True)
 
-    def edit_device(self, deviceid, name, address, subid, devicetype):
+    def edit_device(self, deviceid, name, address, subid, devicetype, paired):
         return self.app.post('/save/device',
                              data=dict(name=name, checkbox_1='on', save='xx', deviceid=str(deviceid), address=address,
                                        subid=subid,
-                                       devicetype=devicetype),
+                                       devicetype=devicetype, paired=paired),
                              follow_redirects=True)
 
     def addroom(self, name):
@@ -96,6 +96,10 @@ class homecontrolTestCase(unittest.TestCase):
 
     def delete(self, item, id):
         return self.app.get('/delete/' + item + '/' + str(id))
+
+
+    def device_action(self, action, deviceid):
+        return self.app.get('/device/' + action + '/' + str(deviceid))
 
     def testgetuser(self):
         self.testadduser()
@@ -118,7 +122,7 @@ class homecontrolTestCase(unittest.TestCase):
     def test_create_device(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.add_device('test device', 1, 2, 'test type')
+        rv = self.add_device('test device', 1, 2, 'test type', 0)
         assert 'test device' in rv.data
 
 
@@ -126,7 +130,7 @@ class homecontrolTestCase(unittest.TestCase):
         deviceid = 1
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.edit_device(deviceid, 'edited device', 1, 2, 'edited type')
+        rv = self.edit_device(deviceid, 'edited device', 1, 2, 'edited type', 0)
         assert 'edited device' in rv.data
 
 
@@ -201,6 +205,29 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'Lounge' in rv.data
 
 
+    def test_device_action_pair_unpair(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.device_action('pair', 1)
+        assert 'unpair' in rv.data
+        rv = self.device_action('unpair', 1)
+        assert 'pair' in rv.data
+
+
+    def test_device_action_on_off(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.device_action('on', 1)
+        assert rv.status_code == 200
+        time.sleep(2)
+        rv = self.device_action('off', 1)
+        assert rv.status_code == 200
+
+    def test_serial_pair(self):
+        pair = 'PAIR,0,0,0,1,0,3,7,2,10,13|'
+        sc = serialControl.SerialControl()
+        sc.send_single_message(pair)
+
     def test_serial_on(self):
         on = 'SEND,0,0,0,1,0,3,7,2,10,13|'
         off = 'SEND,0,0,0,0,0,3,7,2,10,13|'
@@ -211,26 +238,11 @@ class homecontrolTestCase(unittest.TestCase):
     def test_serial_off(self):
         on = 'SEND,0,0,0,1,0,3,7,2,10,13|'
         off = 'SEND,0,0,0,0,0,3,7,2,10,13|'
-        self.send_serial(off)
 
         sc = serialControl.SerialControl()
         sc.send_single_message(off)
 
-    def send_serial(self, msg):
-        ser = serial.Serial(8, 9600)  # open serial port
-        time.sleep(1)
-        s = ''
-        while 'READY' not in s:
-            s = ser.readline()
-            print s
 
-        print "sending"
-        ser.write(msg)  # write a string
-        print "sent"
-        while "send end" not in s:
-            s = ser.readline()
-
-        ser.close()  # close port
 
 if __name__ == '__main__':
     unittest.main()

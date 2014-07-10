@@ -18,7 +18,7 @@ class SerialControl:
         print "sending"
         ser.write(msg)  # write a string
         print "sent"
-        while "send end" not in s:
+        while "end" not in s:
             s = ser.readline()
 
         ser.close()  # close port

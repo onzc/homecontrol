@@ -5,6 +5,7 @@ create table devices (
     devicename text not null,
     deviceaddress int not null,
     devicesubid int not null,
+    paired int not null,
     devicetype text not null
 );
 

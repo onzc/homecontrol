@@ -258,6 +258,27 @@ def delete(item, id):
         return render_template('home.html', error=error)
 
 
+@app.route('/device/<action>/<deviceid>')
+def device_action(action, deviceid):
+    if isloggedin() == True:
+        db = get_db()
+        action = action.lower()
+        df = devicefactory.DeviceFactory()
+        device = df.get_device(db, deviceid)
+        if action == 'pair':
+            device.pair(db)
+        elif action == 'unpair':
+            device.unpair(db)
+        elif action == 'on':
+            device.on()
+        elif action == 'off':
+            device.off()
+        return edit('device', deviceid)
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+
 @app.route('/save/<item>', methods=['POST'])
 def save(item):
     if isloggedin() == True:
@@ -284,6 +305,7 @@ def save_device(db):
         address = request.form['address']
         subid = request.form['subid']
         devicetype = request.form['devicetype']
+        paired = 0
         for f in request.form:
             if f.startswith('checkbox_'):
                 devicegroupid = f.replace('checkbox_', '')
@@ -292,11 +314,14 @@ def save_device(db):
         # need to check we have at least 1 group here
         df = devicefactory.DeviceFactory()
         if deviceid == '':
-            df.create(db, devicename, address, subid, devicetype, devicegroups)
+            deviceid = df.create(db, devicename, address, subid, devicetype, paired, devicegroups)
         else:
-            df.update(db, deviceid, devicename, address, subid, devicetype, devicegroups)
+            df.update(db, deviceid, devicename, address, subid, devicetype, paired, devicegroups)
 
-    return device_list()
+        return edit('device', deviceid)
+    else:
+        return device_list()
+
 
 
 def save_room(db):

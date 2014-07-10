@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c67101c8-c509-48b1-a0df-1f744204390f" name="Default" comment="post test of merge">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/serialControl.py" />
+    <list default="true" id="c67101c8-c509-48b1-a0df-1f744204390f" name="Default" comment="add basic serial control and tests">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/messagebuilder.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homecontrol.db" afterPath="$PROJECT_DIR$/homecontrol.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homecontrol.py" afterPath="$PROJECT_DIR$/homecontrol.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homecontrol_tests.py" afterPath="$PROJECT_DIR$/homecontrol_tests.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schema.sql" afterPath="$PROJECT_DIR$/schema.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serialControl.py" afterPath="$PROJECT_DIR$/serialControl.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testdata.sql" afterPath="$PROJECT_DIR$/testdata.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="homecontrol.iws" />
@@ -30,8 +35,18 @@
       <file leaf-file-name="homecontrol.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/homecontrol.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5355" max-vertical-offset="6630">
-              <caret line="315" column="13" selection-start-line="290" selection-start-column="0" selection-end-line="315" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2997" max-vertical-offset="6902">
+              <caret line="186" column="4" selection-start-line="186" selection-start-column="4" selection-end-line="186" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/flask/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="24519" max-vertical-offset="30991">
+              <caret line="1474" column="0" selection-start-line="1474" selection-start-column="0" selection-end-line="1474" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -40,30 +55,8 @@
       <file leaf-file-name="devicefactory.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/devicefactory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1088">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="homecontrol_tests.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5224719" vertical-offset="3316" max-vertical-offset="4114">
-              <caret line="206" column="15" selection-start-line="206" selection-start-column="15" selection-end-line="206" selection-end-column="15" />
-              <folding>
-                <element signature="e#20#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serialControl.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/serialControl.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="510">
-              <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="704" max-vertical-offset="1088">
+              <caret line="52" column="19" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="19" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -71,21 +64,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="room.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/room.py">
+      <file leaf-file-name="homecontrol_tests.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="8" selection-end-column="36" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3630" max-vertical-offset="4318">
+              <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
+              <folding>
+                <element signature="e#20#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addeditdevice.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/addeditdevice.html">
+      <file leaf-file-name="serialControl.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/serialControl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="889" max-vertical-offset="1241">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5566751" vertical-offset="102" max-vertical-offset="527">
+              <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -94,8 +89,30 @@
       <file leaf-file-name="device.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/device.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="493">
-              <caret line="13" column="17" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="708" max-vertical-offset="1156">
+              <caret line="58" column="79" selection-start-line="58" selection-start-column="79" selection-end-line="58" selection-end-column="79" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="messagebuilder.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/messagebuilder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+              <caret line="8" column="272" selection-start-line="8" selection-start-column="272" selection-end-line="8" selection-end-column="272" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="schema.sql" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schema.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1139">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -104,8 +121,18 @@
       <file leaf-file-name="testdata.sql" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testdata.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="731">
-              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="731">
+              <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addeditdevice.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/addeditdevice.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.3076923" vertical-offset="730" max-vertical-offset="1394">
+              <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -147,7 +174,6 @@
         <option value="$PROJECT_DIR$/defaultdata.sql" />
         <option value="$PROJECT_DIR$/roomgroup.py" />
         <option value="$PROJECT_DIR$/roomgroupfactory.py" />
-        <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/room.py" />
         <option value="$PROJECT_DIR$/templates/addroom.html" />
         <option value="$PROJECT_DIR$/templates/roomlist.html" />
@@ -156,13 +182,17 @@
         <option value="$PROJECT_DIR$/devicegroup.py" />
         <option value="$PROJECT_DIR$/devicegroupfactory.py" />
         <option value="$PROJECT_DIR$/roomfactory.py" />
+        <option value="$PROJECT_DIR$/serialControl.py" />
+        <option value="$PROJECT_DIR$/templates/dimmer.html" />
+        <option value="$PROJECT_DIR$/templates/onoff.html" />
+        <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/schema.sql" />
-        <option value="$PROJECT_DIR$/device.py" />
-        <option value="$PROJECT_DIR$/devicefactory.py" />
         <option value="$PROJECT_DIR$/testdata.sql" />
+        <option value="$PROJECT_DIR$/devicefactory.py" />
+        <option value="$PROJECT_DIR$/messagebuilder.py" />
+        <option value="$PROJECT_DIR$/device.py" />
         <option value="$PROJECT_DIR$/homecontrol.py" />
         <option value="$PROJECT_DIR$/templates/addeditdevice.html" />
-        <option value="$PROJECT_DIR$/serialControl.py" />
         <option value="$PROJECT_DIR$/homecontrol_tests.py" />
       </list>
     </option>
@@ -275,7 +305,7 @@
       <recent name="C:\Users\Andy\Documents\pythonprojects\homecontrol\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest homecontrolTestCase.test_serial_on">
+  <component name="RunManager" selected="Python.homecontrol">
     <configuration default="false" name="homecontrol" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -320,7 +350,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest homecontrolTestCase.testSerial1" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest homecontrolTestCase.test_device_action" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -332,7 +362,7 @@
       <module name="homecontrol" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homecontrol_tests.py" />
       <option name="CLASS_NAME" value="homecontrolTestCase" />
-      <option name="METHOD_NAME" value="testSerial1" />
+      <option name="METHOD_NAME" value="test_device_action" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -344,7 +374,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest homecontrolTestCase.test_serial_on" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest homecontrolTestCase.test_device_action_pair_unpair" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -356,7 +386,7 @@
       <module name="homecontrol" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homecontrol_tests.py" />
       <option name="CLASS_NAME" value="homecontrolTestCase" />
-      <option name="METHOD_NAME" value="test_serial_on" />
+      <option name="METHOD_NAME" value="test_device_action_pair_unpair" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -368,7 +398,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest homecontrolTestCase.test_serial_off" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest homecontrolTestCase.test_device_action_on_off" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -380,7 +410,7 @@
       <module name="homecontrol" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homecontrol_tests.py" />
       <option name="CLASS_NAME" value="homecontrolTestCase" />
-      <option name="METHOD_NAME" value="test_serial_off" />
+      <option name="METHOD_NAME" value="test_device_action_on_off" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -388,7 +418,9 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
@@ -516,17 +548,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.homecontrol" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in homecontrolTestCase" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testSerial1" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_serial_on" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_serial_off" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_device_action" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_device_action_pair_unpair" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_device_action_on_off" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_serial_on" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_serial_off" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.testSerial1" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in homecontrolTestCase" />
-        <item index="4" class="java.lang.String" itemvalue="Python.homecontrol" />
+        <item index="0" class="java.lang.String" itemvalue="Python.homecontrol" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_device_action_on_off" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_device_action_pair_unpair" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest homecontrolTestCase.test_device_action" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in homecontrolTestCase" />
       </list>
     </recent_temporary>
   </component>
@@ -612,7 +644,11 @@
       <created>1404984707705</created>
       <updated>1404984707705</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="add basic serial control and tests">
+      <created>1404989277078</created>
+      <updated>1404989277078</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -623,16 +659,16 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25157234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17789166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38050315" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3207547" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37578616" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2955975" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25157234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -676,7 +712,8 @@
     <MESSAGE value="resolve mergre" />
     <MESSAGE value="refactor device address to be address and sub address.&#10;switch device type to be radio button" />
     <MESSAGE value="post test of merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="post test of merge" />
+    <MESSAGE value="add basic serial control and tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add basic serial control and tests" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -684,7 +721,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/homecontrol_tests.py</url>
-          <line>104</line>
+          <line>108</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -694,39 +731,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/homecontrol.py</url>
-          <line>313</line>
+          <line>341</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/devicefactory.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="81" />
+          <url>file://$PROJECT_DIR$/homecontrol.py</url>
+          <line>318</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/homecontrol_tests.py</url>
+          <line>220</line>
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="85" />
+      <option name="time" value="88" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="1258">
-          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-          <folding>
-            <element signature="e#20#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/userdetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="221">
-          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/schema.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
@@ -914,20 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3618421" vertical-offset="30227" max-vertical-offset="30991">
-          <caret line="1816" column="0" selection-start-line="1816" selection-start-column="0" selection-end-line="1816" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="493">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/jinja2/runtime.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3027" max-vertical-offset="9860">
@@ -953,13 +964,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="408">
           <caret line="15" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49373883" vertical-offset="115" max-vertical-offset="1241">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1012,78 +1016,113 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/schema.sql">
+    <entry file="file://$PROJECT_DIR$/room.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.2303523" vertical-offset="0" max-vertical-offset="408">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="8" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="1258">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5451895" vertical-offset="0" max-vertical-offset="493">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testdata.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="731">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/messagebuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <caret line="8" column="272" selection-start-line="8" selection-start-column="272" selection-end-line="8" selection-end-column="272" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1139">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/device.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="493">
-          <caret line="13" column="17" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="708" max-vertical-offset="1156">
+          <caret line="58" column="79" selection-start-line="58" selection-start-column="79" selection-end-line="58" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/addeditdevice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3076923" vertical-offset="730" max-vertical-offset="1394">
+          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/devicefactory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="1071">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/addeditdevice.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="889" max-vertical-offset="1241">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/homecontrol.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4726" max-vertical-offset="6426">
-          <caret line="315" column="13" selection-start-line="290" selection-start-column="0" selection-end-line="315" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/room.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="8" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serialControl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="510">
-          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="704" max-vertical-offset="1088">
+          <caret line="52" column="19" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="19" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="24519" max-vertical-offset="30991">
+          <caret line="1474" column="0" selection-start-line="1474" selection-start-column="0" selection-end-line="1474" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homecontrol.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2997" max-vertical-offset="6902">
+          <caret line="186" column="4" selection-start-line="186" selection-start-column="4" selection-end-line="186" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/homecontrol_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5224719" vertical-offset="3316" max-vertical-offset="4114">
-          <caret line="206" column="15" selection-start-line="206" selection-start-column="15" selection-end-line="206" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3630" max-vertical-offset="4318">
+          <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
           <folding>
             <element signature="e#20#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serialControl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5566751" vertical-offset="102" max-vertical-offset="527">
+          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
