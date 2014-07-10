@@ -21,12 +21,6 @@ class homecontrolTestCase(unittest.TestCase):
         os.close(self.db_fd)
         os.unlink(homecontrol.app.config['DATABASE'])
 
-
-    def test_empty_db(self):
-        rv = self.app.get('/')
-        assert 'Unbelievable.' in rv.data
-
-
     def testHome(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
@@ -74,17 +68,17 @@ class homecontrolTestCase(unittest.TestCase):
         return self.app.get('/list/device', follow_redirects=True)
 
 
-    def add_device(self, name, address, subid, type):
+    def add_device(self, name, address, subid, devicetype):
         return self.app.post('/save/device',
                              data=dict(name=name, checkbox_1='on', save='xx', deviceid='', address=address, subid=subid,
-                                       type=type),
+                                       devicetype=devicetype),
                              follow_redirects=True)
 
-    def edit_device(self, deviceid, name, address, subid, type):
+    def edit_device(self, deviceid, name, address, subid, devicetype):
         return self.app.post('/save/device',
                              data=dict(name=name, checkbox_1='on', save='xx', deviceid=str(deviceid), address=address,
                                        subid=subid,
-                                       type=type),
+                                       devicetype=devicetype),
                              follow_redirects=True)
 
     def addroom(self, name):
