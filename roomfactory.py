@@ -1,6 +1,7 @@
 import room
 import roomgroupfactory
 import roomgroup
+import devicefactory
 
 
 class RoomFactory():
@@ -29,7 +30,16 @@ class RoomFactory():
             rmgrp = roomgroup.Roomgroup(row['roomgroup_id'], row['roomgroup_name'])
             roomgroups.append(rmgrp)
 
-        return room.Room(rm['room_id'], rm['name'], roomgroups)
+        cur = db.execute('select * from room_device where room_id = ?', [roomid])
+        devicerows = cur.fetchall()
+        devices = []
+        df = devicefactory.DeviceFactory()
+        for row in devicerows:
+            deviceid = row['device_id']
+            device = df.get_device(db, deviceid)
+            devices.append(device)
+
+        return room.Room(rm['room_id'], rm['name'], roomgroups, devices)
 
 
     def update_room(self, db, roomid, name, roomgroups):
@@ -52,4 +62,5 @@ class RoomFactory():
     def delete_room(self, db, roomid):
         cur = db.execute('delete from rooms where rooms.room_id =?', [roomid])
         cur = db.execute('delete from room_roomgroup where room_id =?', [roomid])
+        cur = db.execute('delete from room_device where room_id = ? ', [roomid])
         db.commit()

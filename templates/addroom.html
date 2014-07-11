@@ -27,7 +27,18 @@
 
         </fieldset>
     </div>
+    <ul data-role="listview" data-inset="true" data-shadow="false">
+        {% for device in room.devices %}
 
+        <li><a href="{{ url_for('edit' , item='device', id=device.deviceid )}}">{{ device.name }}</a><a
+                href="{{ url_for('unlink' , item='roomdevice', id1=room.roomid, id2=device.deviceid )}}"
+                data-icon="delete"></a></li>
+
+
+        {% else %}
+        <li><em>No devices allocated so far</em>
+            {% endfor %}
+    </ul>
     <button type="submit" name="save" value="save">save</button>
     <button type="cancel" name="cancel">cancel</button>
     <input type="hidden" name="roomid" value="{{ room.roomid}}">

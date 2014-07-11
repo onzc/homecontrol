@@ -92,8 +92,8 @@ def show_home():
         lin = False
     if lin == True:
         uf = userfactory.Userfactory()
-        user = uf.getuser(db,session['currentuserid'] )
-        return render_template('home.html',rooms=rooms, user=user)
+        user = uf.getuser(db, session['currentuserid'])
+        return render_template('home.html', rooms=rooms, user=user)
     else:
         return render_template('home.html', rooms=rooms, user=None)
 
@@ -128,7 +128,7 @@ def room_list():
 def login():
     error = None
     if request.method == 'POST':
-        db= get_db()
+        db = get_db()
         uf = userfactory.Userfactory()
         userid = uf.validuser(db, request.form['username'], request.form['password'])
         if userid > 0:
@@ -146,7 +146,7 @@ def login():
 def logout():
     userid = session['currentuserid']
     uf = userfactory.Userfactory()
-    db= get_db()
+    db = get_db()
     user = uf.getuser(db, userid)
     session.pop('logged_in', None)
     session.pop('currentuserid', None)
@@ -156,7 +156,7 @@ def logout():
 
 @app.route('/getuser', methods=['GET'])
 def getuser():
-    db= get_db()
+    db = get_db()
     uf = userfactory.Userfactory()
     userid = int(request.args.get('userid'))
     userdetails = uf.getuser(db, userid)
@@ -236,6 +236,7 @@ def add(item):
         error = 'Not authorised'
         return render_template('home.html', error=error)
 
+
 @app.route('/delete/<item>/<id>')
 def delete(item, id):
     if isloggedin() == True:
@@ -256,6 +257,44 @@ def delete(item, id):
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
+
+
+@app.route('/link/<item>/<id1>/<id2>')
+def link(item, id1, id2):
+    if isloggedin() == True:
+        db = get_db()
+        item = item.lower()
+        rf = roomfactory.RoomFactory()
+
+        if item == 'roomdevice':
+            room = rf.get_room(db, id1)
+            df = devicefactory.DeviceFactory()
+            device = df.get_device(db, id2)
+            room.add_device(db, device)
+            return edit('room', id1)
+
+        else:
+            error = 'Not authorised'
+            return render_template('home.html', error=error)
+
+
+@app.route('/unlink/<item>/<id1>/<id2>')
+def unlink(item, id1, id2):
+    if isloggedin() == True:
+        db = get_db()
+        item = item.lower()
+        rf = roomfactory.RoomFactory()
+
+        if item == 'roomdevice':
+            room = rf.get_room(db, id1)
+            df = devicefactory.DeviceFactory()
+            device = df.get_device(db, id2)
+            room.remove_device(db, device)
+            return edit('room', id1)
+
+        else:
+            error = 'Not authorised'
+            return render_template('home.html', error=error)
 
 
 @app.route('/device/<action>/<deviceid>')
@@ -321,7 +360,6 @@ def save_device(db):
         return edit('device', deviceid)
     else:
         return device_list()
-
 
 
 def save_room(db):
@@ -392,7 +430,7 @@ def utility_processor():
 
 def getjqm_url(method):
     r = url_for(method)
-    r = r + '?l=' + str( random.random())
+    r = r + '?l=' + str(random.random())
     return r
 
 

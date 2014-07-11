@@ -98,6 +98,13 @@ class homecontrolTestCase(unittest.TestCase):
         return self.app.get('/delete/' + item + '/' + str(id))
 
 
+    def link_device_room(self, item, roomid, deviceid):
+        return self.app.get('/link/' + item + '/' + str(roomid) + '/' + str(deviceid))
+
+
+    def unlink_device_room(self, item, roomid, deviceid):
+        return self.app.get('/unlink/' + item + '/' + str(roomid) + '/' + str(deviceid))
+
     def device_action(self, action, deviceid):
         return self.app.get('/device/' + action + '/' + str(deviceid))
 
@@ -203,6 +210,15 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.delete('room', 2)
         assert 'Kitchen' not in rv.data
         assert 'Lounge' in rv.data
+
+
+    def test_link_unlink_room_device(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.unlink_device_room('roomdevice', 1, 1)
+        assert 'No devices allocated so far' in rv.data
+        rv = self.link_device_room('roomdevice', 1, 1)
+        assert 'simple switch' in rv.data
 
 
     def test_device_action_pair_unpair(self):

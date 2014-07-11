@@ -1,9 +1,14 @@
-drop table if exists device;
+drop table if exists room_device;
+create table room_device (
+    room_device_id integer primary key autoincrement,
+    room_id integer,
+    device_id integer
+);
 drop table if exists devices;
 create table devices (
     device_id integer primary key autoincrement,
     devicename text not null,
-    deviceaddress int not null,
+    deviceaddress integer not null,
     devicesubid int not null,
     paired int not null,
     devicetype text not null
