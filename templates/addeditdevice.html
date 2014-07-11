@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if device is none %}
+<h2>Add Device</h2>
+{% else %}
+<h2>Edit Device</h2>
+{% endif %}
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+<form action="{{ url_for('save' , item='device' )}}" method=post>
+    <label for="name">Device Name:</label>
+    <input type="text" name="name" id="name" value="{{ device.name }}">
+
+    <div class="ui-field-contain">
+        <fieldset data-role="controlgroup">
+            <legend>Device Groups:</legend>
+            {% for devicegroup in devicegroups %}
+            <input type="checkbox" name="checkbox_{{ devicegroup.devicegroupid  }}"
+                   id="checkbox_{{ devicegroup.devicegroupid }}"
+                   class="custom"
+            {% if device is none %}{% else %} {% if device.is_member_of_devicegroup(devicegroup.devicegroupid) == true
+            %} checked
+            {% endif %}{% endif %} >
+            <label for="checkbox_{{ devicegroup.devicegroupid }}">{{ devicegroup.name }}</label>
+
+            {% else %}
+            <li><em>Unbelievable. No device groups found so far</em>
+                {% endfor %}
+
+
+        </fieldset>
+    </div>
+    <div class="ui-grid-b">
+        <div class="ui-block-a">
+            <label for="address">Address:</label></div>
+        <div class="ui-block-b"><label for="subid">SubID:</label></div>
+        <div class="ui-block-c"></div>
+        <div class="ui-block-a">
+
+            <input data-clear-btn="false" name="address" id="address" value="{{ device.address }}" type="number">
+
+        </div>
+        <div class="ui-block-b">
+
+            <input data-clear-btn="false" name="subid" id="subid" value="{{ device.subid }}" type="number">
+        </div>
+        <div class="ui-block-c">
+
+            <a href="#" id="autoallocate" data-role="button" data-inline="true" data-mini="true">auto allocate</a>
+            {% if device.paired %}
+            <a href="{{ url_for('device_action' , action='unpair', deviceid=device.deviceid )}}" id="unpair"
+               data-role="button" data-inline="true" data-mini="true">unpair</a>
+            <a href="{{ url_for('device_action' , action='on', deviceid=device.deviceid )}}" id="teston"
+               data-role="button" data-inline="true" data-mini="true">test: on</a>
+            <a href="{{ url_for('device_action' , action='off', deviceid=device.deviceid )}}" id="testoff"
+               data-role="button" data-inline="true" data-mini="true">test: off</a>
+            {% else %}
+            {% if not device is none %}
+            <a href="{{ url_for('device_action' , action='pair', deviceid=device.deviceid )}}" id="pair"
+               data-role="button" data-inline="true" data-mini="true">pair</a>
+            {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+    <!-- /grid-b -->
+    <fieldset data-role="controlgroup" data-mini="true">
+        <legend>Device Type:</legend>
+        <input name="devicetype" id="on_off" value="on_off" type="radio" {% if device is none %}{% else %} {% if
+        device.devicetype == "on_off" %} checked="checked" {% endif %}{% endif %} >
+
+        <label for="on_off">on/off</label>
+        <input name="devicetype" id="dimmer" value="dimmer" type="radio" {% if device is none %}{% else %} {% if
+        device.devicetype == "dimmer" %} checked="checked" {% endif %}{% endif %} >
+        <label for="dimmer">dimmer</label>
+
+    </fieldset>
+
+    <button type="submit" name="save" value="save">save</button>
+    <button type="cancel" name="cancel">close</button>
+    <input type="hidden" name="deviceid" value="{{ device.deviceid}}">
+
+</form>
+{% endblock %}

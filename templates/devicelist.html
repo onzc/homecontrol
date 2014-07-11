@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+
+{% endif %}
+<ul data-role="listview" data-inset="true" data-shadow="false">
+    {% for device in devices %}
+
+    <li><a href="{{ url_for('edit' , item='device', id=device.deviceid )}}">{{ device.name }}</a><a
+            href="{{ url_for('delete' , item='device', id=device.deviceid )}}"
+            data-icon="delete"></a></li>
+
+
+    {% else %}
+    <li><em>Unbelievable. No devices found so far</em>
+        {% endfor %}
+</ul>
+<a href="{{ url_for('add' , item='device' )}}" class="ui-btn ui-icon-plus ui-btn-icon-left">add device</a>
+{% endblock %}
