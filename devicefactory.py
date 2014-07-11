@@ -60,3 +60,21 @@ class DeviceFactory():
         cur = db.execute('delete from devices where device_id =?', [deviceid])
         cur = db.execute('delete from device_devicegroup where device_id =?', [deviceid])
         db.commit()
+
+
+    def get_available_devices(self, db, room):
+        cur = db.execute('select * from devices')
+        devicerows = cur.fetchall()
+        devices = []
+        existing_deviceids = []
+        for existingdevice in room.devices:
+            existing_deviceids.append(existingdevice.deviceid)
+
+        for row in devicerows:
+            deviceid = row['device_id']
+
+            if deviceid not in existing_deviceids:
+                d = self.get_device(db, deviceid)
+                devices.append(d)
+
+        return devices

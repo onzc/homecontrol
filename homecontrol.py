@@ -195,7 +195,10 @@ def edit(item, id):
             roomgroups = rgf.getroomgroups(db)
             rf = roomfactory.RoomFactory()
             room = rf.get_room(db, id)
-            return render_template('addroom.html', user=user, roomgroups=roomgroups, room=room)
+            df = devicefactory.DeviceFactory()
+            available_devices = df.get_available_devices(db, room)
+            return render_template('addroom.html', user=user, roomgroups=roomgroups, room=room,
+                                   available_devices=available_devices)
         elif item == 'roomgroup':
             pass
         elif item == 'device':
@@ -221,8 +224,10 @@ def add(item):
         if item == 'room':
             rgf = roomgroupfactory.Roomgroupfactory()
             roomgroups = rgf.getroomgroups(db)
-
-            return render_template('addroom.html', user=user, roomgroups=roomgroups, room=None)
+            df = devicefactory.DeviceFactory()
+            available_devices = df.get_devices(db)
+            return render_template('addroom.html', user=user, roomgroups=roomgroups, room=None,
+                                   available_devices=available_devices)
         elif item == 'roomgroup':
             pass
         elif item == 'device':

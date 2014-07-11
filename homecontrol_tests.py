@@ -212,6 +212,12 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'Lounge' in rv.data
 
 
+    def test_edit_room(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.app.get('edit/room/1')
+        assert 'simple switch' in rv.data
+
     def test_link_unlink_room_device(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
