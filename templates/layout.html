@@ -1,11 +1,15 @@
 <!doctype html>
 <title>homeControl</title>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='jquery.mobile-1.4.2.css') }}">
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <script src="{{ url_for('static', filename='jquery-1.11.1.js') }}"></script>
 <script src="{{ url_for('static', filename='jquery.mobile-1.4.2.js') }}"></script>
 <script src="{{ url_for('static', filename='homecontrol.js') }}"></script>
-<div id="homepage" class="page" data-role="page" data-url="{{ request.path }}">
+<div id="homepage" class="page" data-role="page" data-url="{{ request.path }}" data-cache="never">
     <script>
 
         $(document).one('pageinit',"#homepage",function(evt){
@@ -57,17 +61,19 @@
     <!-- /panel -->
     <script>
         function bindControls() {
-
-        $('#addDevice').one('click',function () {addDevice_click()})
+//alert('bind')
+        //$('#addDevice').on('click',function () {addDevice_click()})
     }
 
-    function addDevice_click (){
-        roomid = $('#roomid').val()
+    function addDevice_click (roomid){
+
 
         deviceid =$('#select_device').val()
+
         if (deviceid != null) {
-            url = '/link/roomdevice/' + roomid + '/' + deviceid
-            window.location = url
+
+            url = '/link/roomdevice/' + roomid + '/' + deviceid //+ '?l=' + Math.random();
+            $( ":mobile-pagecontainer" ).pagecontainer( "change", url)
         }
     }
 
