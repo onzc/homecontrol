@@ -79,9 +79,9 @@ def close_db(error):
 @app.route('/home')
 @app.route('/')
 def show_home():
-    init_db()
-    init_defaultdata()
-    init_testdata()
+    # init_db()
+    #init_defaultdata()
+    #init_testdata()
     db = get_db()
     rf = roomfactory.RoomFactory()
     rooms = rf.get_rooms(db)

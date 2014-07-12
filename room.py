@@ -33,4 +33,5 @@ class Room:
         cur = db.execute('delete from room_device where room_id = ? and device_id = ?', [self.roomid, device.deviceid])
         db.commit()
         db.execute('INSERT INTO room_device ( room_id , device_id) VALUES (?, ?)', [self.roomid, device.deviceid])
+        db.commit()
         self.devices.append(device)
