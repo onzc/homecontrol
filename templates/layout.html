@@ -5,8 +5,14 @@
 <script src="{{ url_for('static', filename='jquery-1.11.1.js') }}"></script>
 <script src="{{ url_for('static', filename='jquery.mobile-1.4.2.js') }}"></script>
 <script src="{{ url_for('static', filename='homecontrol.js') }}"></script>
-<div class=page data-role="page" data-url="{{ request.path }}">
+<div id="homepage" class="page" data-role="page" data-url="{{ request.path }}">
+    <script>
 
+        $(document).one('pageinit',"#homepage",function(evt){
+           bindControls();
+        });
+
+    </script>
 
     <div data-role="header">
         <h1>homeControl</h1>
@@ -49,21 +55,25 @@
         <a href="{{ jqm_url('adduser') }}" class="ui-btn ui-icon-plus ui-btn-icon-left">add user</a>
     </div>
     <!-- /panel -->
-
     <script>
+        function bindControls() {
 
-    $(document).ready(function () {
-        initLayout();
-    });
+        $('#addDevice').one('click',function () {addDevice_click()})
+    }
 
-    function initLayout() {
+    function addDevice_click (){
+        roomid = $('#roomid').val()
 
+        deviceid =$('#select_device').val()
+        if (deviceid != null) {
+            url = '/link/roomdevice/' + roomid + '/' + deviceid
+            window.location = url
+        }
     }
 
 
 
-
-
-
     </script>
+
 </div>
+
