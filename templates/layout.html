@@ -61,14 +61,14 @@
     <!-- /panel -->
     <script>
         function bindControls() {
-//alert('bind')
-        //$('#addDevice').on('click',function () {addDevice_click()})
+
+
     }
 
     function addDevice_click (roomid){
 
 
-        deviceid =$('#select_device').val()
+        var deviceid =$('#select_device').val()
 
         if (deviceid != null) {
 
@@ -77,7 +77,10 @@
         }
     }
 
-
+    function ajaxAction (action, deviceid) {
+        var url= '/device/' + action + '/' + deviceid + '/home'
+        $.get(url)
+    }
 
     </script>
 

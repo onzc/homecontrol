@@ -47,18 +47,16 @@
 
             <a href="#" id="autoallocate" data-role="button" data-inline="true" data-mini="true">auto allocate</a>
             {% if device.paired %}
-            <a href="{{ url_for('device_action' , action='unpair', deviceid=device.deviceid, reload='edit' )}}"
-               id="unpair"
-               data-role="button" data-inline="true" data-mini="true">unpair</a>
-            <a href="{{ url_for('device_action' , action='on', deviceid=device.deviceid, reload='edit' )}}" id="teston"
-               data-role="button" data-inline="true" data-mini="true">test: on</a>
-            <a href="{{ url_for('device_action' , action='off', deviceid=device.deviceid, reload='edit' )}}"
-               id="testoff"
-               data-role="button" data-inline="true" data-mini="true">test: off</a>
+            <a href="Javascript: ajaxAction ('unpair', {{device.deviceid}})" id="unpair" data-role="button"
+               data-inline="true" data-mini="true">unpair</a>
+            <a href="Javascript: ajaxAction ('on', {{device.deviceid}})" id="teston" data-role="button"
+               data-inline="true" data-mini="true">test: on</a>
+            <a href="Javascript: ajaxAction ('off', {{device.deviceid}})" id="testoff" data-role="button"
+               data-inline="true" data-mini="true">test: off</a>
             {% else %}
             {% if not device is none %}
-            <a href="{{ url_for('device_action' , action='pair', deviceid=device.deviceid, reload='edit' )}}" id="pair"
-               data-role="button" data-inline="true" data-mini="true">pair</a>
+            <a href="Javascript: ajaxAction ('pair', {{device.deviceid}})" id="pair" data-role="button"
+               data-inline="true" data-mini="true">pair</a>
             {% endif %}
             {% endif %}
 

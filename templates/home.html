@@ -15,13 +15,14 @@
             {% if device.devicetype == 'on_off' %}
             <label>{{device.name}}:</label>
 
-            <div data-role="controlgroup" data-type="horizontal">
-                <a href="{{ url_for('device_action' , action='on', deviceid=device.deviceid, reload='home' )}}"
-                   class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-bottom">On</a>
-                <a href="{{ url_for('device_action' , action='off', deviceid=device.deviceid, reload='home' )}}"
-                   class="ui-btn ui-corner-all ui-icon-forbidden ui-btn-icon-bottom">Off</a>
-            </div>
-            {% elif device.devicetype == 'dimmer' %}
+
+        <div data-role="controlgroup" data-type="horizontal">
+            <a href="Javascript: ajaxAction ('on', {{device.deviceid}})"
+               class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-bottom">On</a>
+            <a href="Javascript: ajaxAction ('off', {{device.deviceid}})"
+               class="ui-btn ui-corner-all ui-icon-forbidden ui-btn-icon-bottom">Off</a>
+        </div>
+        {% elif device.devicetype == 'dimmer' %}
             dimmer
             {% endif %}
 

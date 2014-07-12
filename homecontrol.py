@@ -302,8 +302,8 @@ def unlink(item, id1, id2):
             return render_template('home.html', error=error)
 
 
-@app.route('/device/<action>/<deviceid>/<reload>')
-def device_action(action, deviceid, reload):
+@app.route('/device/<action>/<deviceid>')
+def device_action(action, deviceid):
     if isloggedin() == True:
         db = get_db()
         action = action.lower()
@@ -317,11 +317,8 @@ def device_action(action, deviceid, reload):
             device.on()
         elif action == 'off':
             device.off()
-        reload = reload.lower()
-        if reload == 'edit':
-            return edit('device', deviceid)
-        elif reload == 'home':
-            return show_home()
+
+        return show_home()
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)

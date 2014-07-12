@@ -106,8 +106,8 @@ class homecontrolTestCase(unittest.TestCase):
     def unlink_device_room(self, item, roomid, deviceid):
         return self.app.get('/unlink/' + item + '/' + str(roomid) + '/' + str(deviceid))
 
-    def device_action(self, action, deviceid, reload):
-        return self.app.get('/device/' + action + '/' + str(deviceid) + '/' + reload)
+    def device_action(self, action, deviceid):
+        return self.app.get('/device/' + action + '/' + str(deviceid))
 
     def testgetuser(self):
         self.testadduser()
@@ -219,6 +219,7 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.app.get('edit/room/1')
         assert 'simple switch' in rv.data
 
+
     def test_link_unlink_room_device(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
@@ -231,26 +232,28 @@ class homecontrolTestCase(unittest.TestCase):
     def test_device_action_pair_unpair(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.device_action('pair', 1, 'edit')
-        assert 'unpair' in rv.data
-        rv = self.device_action('unpair', 1, 'edit')
-        assert 'pair' in rv.data
+        rv = self.device_action('pair', 1)
+        assert rv.status_code == 200
+        rv = self.device_action('unpair', 1)
+        assert rv.status_code == 200
+        rv = self.device_action('off', 1)
+        assert rv.status_code == 200
 
 
     def test_device_action_on_off(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.device_action('on', 1, 'edit')
+        rv = self.device_action('on', 1)
         assert rv.status_code == 200
         time.sleep(2)
-        rv = self.device_action('off', 1, 'edit')
+        rv = self.device_action('off', 1)
         assert rv.status_code == 200
 
 
     def test_device_pair(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.device_action('pair', 1, 'edit')
+        rv = self.device_action('pair', 1)
 
     def test_serial_pair(self):
         pair = 'PAIR,0,0,0,1,0,3,7,2,10,13|'
