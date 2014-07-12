@@ -1,23 +1,43 @@
 {% extends "layout.html" %}
 {% block body %}
-  {% if session.logged_in %}
+{% if session.logged_in %}
 
-  {% endif %}
-  <ul data-role="listview" data-inset="true" data-shadow="false">
-  {% for room in rooms %}
-      <div data-role="collapsible" data-iconpos="right" data-inset="false">
-          <h2>{{ room.name }}</h2>
+{% endif %}
+<ul data-role="listview" data-inset="true" data-shadow="false">
+    {% for room in rooms %}
+    <div data-role="collapsible" data-iconpos="right" data-inset="false">
+        <h2>{{ room.name }}</h2>
 
-          <p>
+        <p>
 
-              {% for roomgroup in room.roomgroups %}
-              {{roomgroup.name}} &NonBreakingSpace;
-              {% endfor %}
+        <div>
+            {% for device in room.devices %}
+            {% if device.devicetype == 'on_off' %}
+            <label>{{device.name}}:</label>
 
-          </p>
-      </div>
-      {% else %}
-    <li><em>Unbelievable.  No rooms found so far</em>
-  {% endfor %}
-  </ul>
+            <div data-role="controlgroup" data-type="horizontal">
+                <a href="{{ url_for('device_action' , action='on', deviceid=device.deviceid, reload='home' )}}"
+                   class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-bottom">On</a>
+                <a href="{{ url_for('device_action' , action='off', deviceid=device.deviceid, reload='home' )}}"
+                   class="ui-btn ui-corner-all ui-icon-forbidden ui-btn-icon-bottom">Off</a>
+            </div>
+            {% elif device.devicetype == 'dimmer' %}
+            dimmer
+            {% endif %}
+
+
+            {% endfor %}
+        </div>
+        <div>
+            {% for roomgroup in room.roomgroups %}
+            {{roomgroup.name}} &NonBreakingSpace;
+            {% endfor %}
+        </div>
+
+        </p>
+    </div>
+    {% else %}
+    <li><em>Unbelievable. No rooms found so far</em>
+        {% endfor %}
+</ul>
 {% endblock %}

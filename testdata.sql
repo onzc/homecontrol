@@ -2,7 +2,7 @@ INSERT INTO devicegroups (devicegroupname)
 VALUES ('Sockets');
 
 INSERT INTO devices (devicename, deviceaddress,devicesubid, paired, devicetype)
-VALUES ('simple switch', 1, 1, 0, 'on_off');
+VALUES ('simple switch', 0, 13, 0, 'on_off');
 
 INSERT INTO device_devicegroup (devicegroup_id ,device_id)
 VALUES (1,1);

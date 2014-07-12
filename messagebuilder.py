@@ -7,5 +7,6 @@ class MessageBuilder():
 
     def build_simple_message(self, action, address, subid, cmdparam1, cmdparam2, command):
         return action + ',' + str(cmdparam1) + ',' + str(cmdparam2) + ',' + str(address) + ',' + str(
+            command) + ',' + str(
             self.base_address_0) + ',' + str(self.base_address_1) + ',' + str(self.base_address_2) + ',' + str(
             self.base_address_3) + ',' + str(self.base_address_4) + ',' + str(subid) + '|'
