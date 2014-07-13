@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+
+{% endif %}
+<ul data-role="listview" data-inset="true" data-shadow="false">
+    {% for u in users %}
+
+    <li><a href="{{ url_for('edit' , item='user', id=u.userid )}}">{{ u.first }} {{u.last}}</a><a
+            href="{{ url_for('delete' , item='user', id=u.userid  )}}"
+            data-icon="delete"></a></li>
+
+
+    {% else %}
+    <li><em>Unbelievable. No users found so far</em>
+        {% endfor %}
+</ul>
+<a href="{{ url_for('add' , item='user' )}}" class="ui-btn ui-icon-plus ui-btn-icon-left">add user</a>
+{% endblock %}

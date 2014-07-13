@@ -98,6 +98,18 @@ def show_home():
         return render_template('home.html', rooms=rooms, user=None)
 
 
+def user_list():
+    if isloggedin() == True:
+        uf = userfactory.Userfactory()
+        db = get_db()
+        user = uf.getuser(db, session['currentuserid'])
+        users = uf.getusers(db)
+        return render_template('userlist.html', user=user, users=users)
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+
 def device_list():
     if isloggedin() == True:
         uf = userfactory.Userfactory()
@@ -177,7 +189,7 @@ def list(item):
         elif item == 'device':
             return device_list()
         elif item == 'user':
-            pass
+            return user_list()
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
@@ -197,7 +209,7 @@ def edit(item, id):
             room = rf.get_room(db, id)
             df = devicefactory.DeviceFactory()
             available_devices = df.get_available_devices(db, room)
-            return render_template('addroom.html', user=user, roomgroups=roomgroups, room=room,
+            return render_template('addeditroom.html', user=user, roomgroups=roomgroups, room=room,
                                    available_devices=available_devices)
         elif item == 'roomgroup':
             pass
@@ -226,7 +238,7 @@ def add(item):
             roomgroups = rgf.getroomgroups(db)
             df = devicefactory.DeviceFactory()
             available_devices = df.get_devices(db)
-            return render_template('addroom.html', user=user, roomgroups=roomgroups, room=None,
+            return render_template('addeditroom.html', user=user, roomgroups=roomgroups, room=None,
                                    available_devices=available_devices)
         elif item == 'roomgroup':
             pass

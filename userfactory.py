@@ -6,9 +6,13 @@ import flask
 class Userfactory():
 
     def getusers(self, db):
-        cur = db.execute('select user_id, user_name, password, first_name, last_name from users')
-        usr = cur.fetchall()
-        return usr
+        cur = db.execute('select user_id from users')
+        userrows = cur.fetchall()
+        users = []
+        for row in userrows:
+            users.append(self.getuser(db, row['user_id']))
+
+        return users
 
 
     def getuser(self, db, userid):

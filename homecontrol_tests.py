@@ -72,6 +72,9 @@ class homecontrolTestCase(unittest.TestCase):
         return self.app.get('/list/device', follow_redirects=True)
 
 
+    def userlist(self):
+        return self.app.get('/list/user', follow_redirects=True)
+
     def add_device(self, name, address, subid, devicetype, paired):
         return self.app.post('/save/device',
                              data=dict(name=name, checkbox_1='on', save='xx', deviceid='', address=address, subid=subid,
@@ -192,6 +195,12 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.devicelist()
         assert 'simple switch' in rv.data
 
+
+    def test_user_list(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.userlist()
+        assert 'registered' in rv.data
 
     def test_delete_device(self):
         homecontrol.init_db()
