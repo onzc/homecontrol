@@ -256,20 +256,20 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.device_action('pair', 1)
 
     def test_serial_pair(self):
-        pair = 'PAIR,0,0,0,1,0,3,7,2,10,13|'
+        pair = 'PAIR,10,0,0,0,1,0,3,7,2,10,13|'
         sc = serialControl.SerialControl()
         sc.send_single_message(pair)
 
     def test_serial_on(self):
-        on = 'SEND,0,0,0,1,0,3,7,2,10,13|'
-        off = 'SEND,0,0,0,0,0,3,7,2,10,13|'
+        on = 'SEND,7,0,0,0,1,0,3,7,2,10,13|'
+        off = 'SEND,7,0,0,0,0,0,3,7,2,10,13|'
         # self.send_serial(on)
         sc = serialControl.SerialControl()
         sc.send_single_message(on)
 
     def test_serial_off(self):
-        on = 'SEND,0,0,0,1,0,3,7,2,10,13|'
-        off = 'SEND,0,0,0,0,0,3,7,2,10,13|'
+        on = 'SEND,7,0,0,0,1,0,3,7,2,10,13|'
+        off = 'SEND,7,0,0,0,0,0,3,7,2,10,13|'
 
         sc = serialControl.SerialControl()
         sc.send_single_message(off)
