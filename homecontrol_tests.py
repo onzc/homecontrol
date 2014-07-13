@@ -220,6 +220,12 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'simple switch' in rv.data
 
 
+    def test_auto_allocate(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.app.get('autoallocate')
+        assert '"success": true' in rv.data
+
     def test_link_unlink_room_device(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data

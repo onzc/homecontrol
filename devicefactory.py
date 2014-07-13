@@ -78,3 +78,23 @@ class DeviceFactory():
                 devices.append(d)
 
         return devices
+
+
+    def get_next_available_device_address(self, db):
+        address = -1
+        subid = -1
+
+        for a in range(16):
+            for s in range(16):
+                cur = db.execute('select device_id from devices where deviceaddress = ? and devicesubid= ?', [a, s])
+                rows = cur.fetchall()
+                if len(rows) == 0:
+                    address = a
+                    subid = s
+                    break
+
+            if subid != -1:
+                break
+
+        dict = {'deviceaddress': address, 'subid': subid}
+        return dict

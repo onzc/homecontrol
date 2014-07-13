@@ -66,12 +66,8 @@
     }
 
     function addDevice_click (roomid){
-
-
         var deviceid =$('#select_device').val()
-
         if (deviceid != null) {
-
             url = '/link/roomdevice/' + roomid + '/' + deviceid //+ '?l=' + Math.random();
             $( ":mobile-pagecontainer" ).pagecontainer( "change", url)
         }
@@ -82,6 +78,18 @@
         $.get(url)
     }
 
+    function autoAllocate () {
+        var url = '/autoallocate'
+        $.get( url , '', function (data) {populateAutoAllocate(data)}  , 'json' )
+    }
+
+    function populateAutoAllocate(data) {
+        address = data.deviceaddress
+        subid = data.subid
+        //alert (address + ' ' + subid)
+        $('#address').val(address)
+        $('#subid').val(subid)
+    }
     </script>
 
 </div>

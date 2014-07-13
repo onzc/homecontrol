@@ -12,7 +12,7 @@ import devicefactory
 import devicegroupfactory
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-    render_template, flash
+    render_template, flash, jsonify
 
 # create our little application :)
 app = Flask(__name__)
@@ -300,6 +300,22 @@ def unlink(item, id1, id2):
         else:
             error = 'Not authorised'
             return render_template('home.html', error=error)
+
+
+@app.route('/autoallocate')
+def auto_allocate():
+    deviceaddress = 0
+    subid = 0
+    if isloggedin() == True:
+        db = get_db()
+        df = devicefactory.DeviceFactory()
+        d = df.get_next_available_device_address(db)
+        deviceaddress = d['deviceaddress']
+        subid = d['subid']
+        return jsonify(success=True, deviceaddress=deviceaddress, subid=subid, error=None)
+    else:
+        error = 'Not authorised'
+        return jsonify(success=False, deviceaddress=deviceaddress, subid=subid, error=error)
 
 
 @app.route('/device/<action>/<deviceid>')

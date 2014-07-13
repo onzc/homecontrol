@@ -45,7 +45,8 @@
         </div>
         <div class="ui-block-c">
 
-            <a href="#" id="autoallocate" data-role="button" data-inline="true" data-mini="true">auto allocate</a>
+            <a href="javascript: autoAllocate ()" data-role="button" data-inline="true" data-mini="true">auto
+                allocate</a>
             {% if device.paired %}
             <a href="Javascript: ajaxAction ('unpair', {{device.deviceid}})" id="unpair" data-role="button"
                data-inline="true" data-mini="true">unpair</a>
