@@ -33,7 +33,7 @@ class Device:
 
     def pair(self, db):
         mb = messagebuilder.MessageBuilder()
-        msg = mb.build_simple_message('PAIR', 10, self.address, self.subid, 0, 0, 1)
+        msg = mb.get_pair(self)
         sc = serialControl.SerialControl()
         sc.send_single_message(msg)
         cur = db.execute('update devices set paired = 1 where device_id = ?', [self.deviceid])
@@ -42,7 +42,7 @@ class Device:
 
     def unpair(self, db):
         mb = messagebuilder.MessageBuilder()
-        msg = mb.build_simple_message('PAIR', 10, self.address, self.subid, 0, 0, 0)
+        msg = mb.get_unpair(self)
         sc = serialControl.SerialControl()
         sc.send_single_message(msg)
         cur = db.execute('update devices set paired = 0 where device_id = ?', [self.deviceid])
@@ -51,14 +51,14 @@ class Device:
 
     def on(self):
         mb = messagebuilder.MessageBuilder()
-        msg = mb.build_simple_message('SEND', 7, self.address, self.subid, 0, 0, 1)
+        msg = mb.get_on(self)
         sc = serialControl.SerialControl()
         sc.send_single_message(msg)
 
 
     def off(self):
         mb = messagebuilder.MessageBuilder()
-        msg = mb.build_simple_message('SEND', 7, self.address, self.subid, 0, 0, 0)
+        msg = mb.get_off(self)
         sc = serialControl.SerialControl()
         sc.send_single_message(msg)
 

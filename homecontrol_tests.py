@@ -262,13 +262,17 @@ class homecontrolTestCase(unittest.TestCase):
         assert rv.status_code == 200
 
 
-    def test_device_action_on_off(self):
+    def test_device_action_on(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.device_action('on', 2)
+        rv = self.device_action('on', 1)
         assert rv.status_code == 200
-        time.sleep(2)
-        rv = self.device_action('off', 2)
+
+
+    def test_device_action_off(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.device_action('off', 1)
         assert rv.status_code == 200
 
 
