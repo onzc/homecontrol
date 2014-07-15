@@ -229,6 +229,13 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'simple switch' in rv.data
 
 
+    def test_edit_user(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.app.get('edit/user/2')
+        assert 'registered' in rv.data
+
+
     def test_auto_allocate(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
@@ -258,12 +265,31 @@ class homecontrolTestCase(unittest.TestCase):
     def test_device_action_on_off(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.device_action('on', 1)
+        rv = self.device_action('on', 2)
         assert rv.status_code == 200
         time.sleep(2)
-        rv = self.device_action('off', 1)
+        rv = self.device_action('off', 2)
         assert rv.status_code == 200
 
+
+    def test_device_action_dim_on_off(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.device_action('dim_on', 2)
+        assert rv.status_code == 200
+        time.sleep(2)
+        rv = self.device_action('dim_off', 2)
+        assert rv.status_code == 200
+
+
+    def test_device_action_dim_set(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.device_action('dim_set_20', 2)
+        assert rv.status_code == 200
+        time.sleep(2)
+        rv = self.device_action('dim_set_80', 2)
+        assert rv.status_code == 200
 
     def test_device_pair(self):
         rv = self.login('admin', 'p')

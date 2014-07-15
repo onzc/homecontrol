@@ -220,7 +220,8 @@ def edit(item, id):
             device = df.get_device(db, id)
             return render_template('addeditdevice.html', user=user, devicegroups=devicegroups, device=device)
         elif item == 'user':
-            pass
+            edituser = uf.getuser(db, id)
+            return render_template('addedituser.html', user=user, edituser=edituser)
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
@@ -248,7 +249,7 @@ def add(item):
             df = devicefactory.DeviceFactory()
             return render_template('addeditdevice.html', user=user, devicegroups=devicegroups, device=None)
         elif item == 'user':
-            pass
+            return render_template('addedituser.html', user=user, edituser=None)
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
@@ -345,7 +346,16 @@ def device_action(action, deviceid):
             device.on()
         elif action == 'off':
             device.off()
-
+        elif action == 'dim_on':
+            device.dim_on()
+        elif action == 'dim_off':
+            device.dim_off()
+        elif action == 'dim_up':
+            device.dim_up()
+        elif action == 'dim_down':
+            device.dim_down()
+        elif 'dim_set_' in action:
+            device.dim_set(action)
         return show_home()
     else:
         error = 'Not authorised'

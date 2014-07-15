@@ -63,6 +63,35 @@ class Device:
         sc.send_single_message(msg)
 
 
+    def dim_on(self):
+        assert False  # not implemented yet
+        pass
+
+
+    def dim_off(self):
+        assert False  # not implemented yet
+        pass
+
+
+    def dim_up(self):
+        assert False  # not implemented yet
+        pass
+
+
+    def dim_down(self):
+        assert False  # not implemented yet
+        pass
+
+
+    def dim_set(self, action):
+        # action = dim_set_50
+        level = int(action.replace('dim_set_', ''))
+        assert level >= 0 and level <= 100
+        assert False  # not implemented yet
+        pass
+
+
+
 
 
 

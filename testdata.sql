@@ -10,6 +10,12 @@ VALUES (1,1);
 INSERT INTO devicegroups (devicegroupname)
 VALUES ('Lights');
 
+INSERT INTO devices (devicename, deviceaddress,devicesubid, paired, devicetype)
+VALUES ('dimmer switch', 0, 12, 0, 'dimmer');
+
+INSERT INTO device_devicegroup (devicegroup_id ,device_id)
+VALUES (2,2);
+
 INSERT INTO roomgroups (roomgroup_name)
 VALUES ('Downstairs');
 

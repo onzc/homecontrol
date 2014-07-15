@@ -73,8 +73,16 @@
         }
     }
 
+    function dimSet (deviceid) {
+        var sliderSelector = '#dimLevel_' + deviceid
+        var level = $(sliderSelector).val()
+        var action = 'dim_set_' + level
+        ajaxAction(action, deviceid)
+
+    }
+
     function ajaxAction (action, deviceid) {
-        var url= '/device/' + action + '/' + deviceid + '/home'
+        var url= '/device/' + action + '/' + deviceid
         $.get(url)
     }
 

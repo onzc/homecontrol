@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if edituser is none %}
+<h2>Add User</h2>
+{% else %}
+<h2>Edit User</h2>
+{% endif %}
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+<form action="{{ url_for('save' , item='user' )}}" method=post>
+    <label>User Name: {{edituser.username}}</label>
+    <label for="first">First Name:</label>
+    <input type="text" name="first" id="first" value="{{ edituser.first }}">
+    <label for="last">Last Name:</label>
+    <input type="text" name="last" id="last" value="{{ edituser.last }}">
+
+    <button type="submit" name="save" value="save">save</button>
+    <button type="cancel" name="cancel">close</button>
+    <input type="hidden" id="userid" name="userid" value="{{ edituser.userid}}">
+
+</form>
+
+
+{% endblock %}
