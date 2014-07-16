@@ -12,3 +12,7 @@ class DeviceGroupFactory():
 
         return l
 
+
+    def get_devicegroup(self, db, device):
+        pass
+
