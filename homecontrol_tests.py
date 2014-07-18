@@ -36,6 +36,7 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'Logged in' in rv.data
         rv = self.logout()
         assert 'Logged out' in rv.data
+        assert 'Welcome' in rv.data
         rv = self.login('adminx', 'p')
         assert 'Invalid username or password' in rv.data
         rv = self.login('admin', 'defaultx')
