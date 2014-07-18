@@ -48,3 +48,25 @@ class MessageBuilder():
         return self.__build_msg_header('PAIR', self.pair_repeats) + ',' + self.__build_lw_msg(device.address,
                                                                                               device.subid, 0, 0,
                                                                                               0) + '|'
+
+
+    def get_device_group_on(self, devices):
+        message_count = len(devices)
+        messages = []
+        for device in devices:
+            messages.append(self.__build_lw_msg(device.address, device.subid, 0, 0, 1))
+
+        msg = "QUEUE," + str(self.send_repeats) + "," + str(message_count) + ","
+        joined_messages = ",".join(messages)
+        return msg + joined_messages + "|"
+
+
+    def get_device_group_off(self, devices):
+        message_count = len(devices)
+        messages = []
+        for device in devices:
+            messages.append(self.__build_lw_msg(device.address, device.subid, 0, 0, 0))
+
+        msg = "QUEUE," + str(self.send_repeats) + "," + str(message_count) + ","
+        joined_messages = ",".join(messages)
+        return msg + joined_messages + "|"

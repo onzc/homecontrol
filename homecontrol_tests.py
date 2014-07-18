@@ -109,8 +109,8 @@ class homecontrolTestCase(unittest.TestCase):
     def unlink_device_room(self, item, roomid, deviceid):
         return self.app.get('/unlink/' + item + '/' + str(roomid) + '/' + str(deviceid))
 
-    def device_action(self, action, deviceid):
-        return self.app.get('/device/' + action + '/' + str(deviceid))
+    def device_action(self, action, id):
+        return self.app.get('/device/' + action + '/' + str(id))
 
     def testgetuser(self):
         self.testadduser()
@@ -195,6 +195,10 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.devicelist()
         assert 'simple switch' in rv.data
 
+
+    def test_device_group_list(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
 
     def test_user_list(self):
         rv = self.login('admin', 'p')
@@ -298,7 +302,22 @@ class homecontrolTestCase(unittest.TestCase):
     def test_device_pair(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.device_action('pair', 1)
+        rv = self.device_action('pair', 2)
+
+
+    def test_device_group_on(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.device_action('devicegroup_on', 1)
+        assert rv.status_code == 200
+
+
+    def test_device_group_off(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.device_action('devicegroup_off', 1)
+        assert rv.status_code == 200
+
 
     def test_serial_pair(self):
         pair = 'PAIR,10,0,0,0,1,0,3,7,2,10,13|'

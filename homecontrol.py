@@ -92,10 +92,12 @@ def show_home():
         lin = False
     if lin == True:
         uf = userfactory.Userfactory()
+        dgf = devicegroupfactory.DeviceGroupFactory()
         user = uf.getuser(db, session['currentuserid'])
-        return render_template('home.html', rooms=rooms, user=user)
+        devicegroups = dgf.get_devicegroups(db)
+        return render_template('home.html', rooms=rooms, user=user, devicegroups=devicegroups)
     else:
-        return render_template('home.html', rooms=rooms, user=None)
+        return render_template('welcome.html', user=None)
 
 
 def user_list():
@@ -331,31 +333,42 @@ def auto_allocate():
         return jsonify(success=False, deviceaddress=deviceaddress, subid=subid, error=error)
 
 
-@app.route('/device/<action>/<deviceid>')
-def device_action(action, deviceid):
+@app.route('/device/<action>/<id>')
+def device_action(action, id):
     if isloggedin() == True:
         db = get_db()
         action = action.lower()
-        df = devicefactory.DeviceFactory()
-        device = df.get_device(db, deviceid)
-        if action == 'pair':
-            device.pair(db)
-        elif action == 'unpair':
-            device.unpair(db)
-        elif action == 'on':
-            device.on()
-        elif action == 'off':
-            device.off()
-        elif action == 'dim_on':
-            device.dim_on()
-        elif action == 'dim_off':
-            device.dim_off()
-        elif action == 'dim_up':
-            device.dim_up()
-        elif action == 'dim_down':
-            device.dim_down()
-        elif 'dim_set_' in action:
-            device.dim_set(action)
+
+        if 'devicegroup' in action:
+            dgf = devicegroupfactory.DeviceGroupFactory()
+            devicegroup = dgf.get_devicegroup(db, id)
+            if 'devicegroup_on' in action:
+                devicegroup.on()
+            elif 'devicegroup_off' in action:
+                devicegroup.off()
+        else:
+            df = devicefactory.DeviceFactory()
+            device = df.get_device(db, id)
+            if action == 'pair':
+                device.pair(db)
+            elif action == 'unpair':
+                device.unpair(db)
+            elif action == 'on':
+                device.on()
+            elif action == 'off':
+                device.off()
+            elif action == 'dim_on':
+                device.dim_on()
+            elif action == 'dim_off':
+                device.dim_off()
+            elif action == 'dim_up':
+                device.dim_up()
+            elif action == 'dim_down':
+                device.dim_down()
+            elif 'dim_set_' in action:
+                device.dim_set(action)
+
+
         return show_home()
     else:
         error = 'Not authorised'

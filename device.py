@@ -18,7 +18,7 @@ class Device:
         self.address = address
         self.subid = subid
         self.devicetype = devicetype
-        self.paired = paired
+        self.paired = bool(paired)
         self.devicegroups = devicegroups
 
     def is_member_of_devicegroup(self, devicegroupid):
@@ -34,6 +34,7 @@ class Device:
     def pair(self, db):
         mb = messagebuilder.MessageBuilder()
         msg = mb.get_pair(self)
+        print(msg)
         sc = serialControl.SerialControl()
         sc.send_single_message(msg)
         cur = db.execute('update devices set paired = 1 where device_id = ?', [self.deviceid])
@@ -43,6 +44,7 @@ class Device:
     def unpair(self, db):
         mb = messagebuilder.MessageBuilder()
         msg = mb.get_unpair(self)
+        print(msg)
         sc = serialControl.SerialControl()
         sc.send_single_message(msg)
         cur = db.execute('update devices set paired = 0 where device_id = ?', [self.deviceid])
@@ -52,6 +54,7 @@ class Device:
     def on(self):
         mb = messagebuilder.MessageBuilder()
         msg = mb.get_on(self)
+        print(msg)
         sc = serialControl.SerialControl()
         sc.send_single_message(msg)
 
@@ -59,6 +62,7 @@ class Device:
     def off(self):
         mb = messagebuilder.MessageBuilder()
         msg = mb.get_off(self)
+        print(msg)
         sc = serialControl.SerialControl()
         sc.send_single_message(msg)
 

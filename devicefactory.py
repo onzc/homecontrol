@@ -1,5 +1,6 @@
 import device
 import devicegroup
+import devicegroupfactory
 
 
 class DeviceFactory():
@@ -26,7 +27,7 @@ class DeviceFactory():
         grouprows = cur.fetchall()
 
         for grouprow in grouprows:
-            dvgroup = devicegroup.DeviceGroup(grouprow['devicegroup_id'], grouprow['devicegroupname'])
+            dvgroup = devicegroup.DeviceGroup(grouprow['devicegroup_id'], grouprow['devicegroupname'], None)
             devicegroups.append(dvgroup)
 
         return device.Device(row['device_id'], row['devicename'], row['deviceaddress'], row['devicesubid'],
