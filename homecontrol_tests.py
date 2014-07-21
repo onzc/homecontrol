@@ -92,13 +92,22 @@ class homecontrolTestCase(unittest.TestCase):
                                        devicetype=devicetype, paired=paired),
                              follow_redirects=True)
 
-    def addroom(self, name):
+    def create_room(self, name):
         return self.app.post('/save/room', data=dict(name=name, checkbox_1='on', save='xx', roomid=''),
                              follow_redirects=True)
 
 
-    def editroom(self, name, roomid):
+    def save_room(self, name, roomid):
         return self.app.post('/save/room', data=dict(name=name, checkbox_2='on', save='xx', roomid=str(roomid)),
+                             follow_redirects=True)
+
+
+    def create_device_group(self, name):
+        return self.app.post('/save/devicegroup', data=dict(name=name), follow_redirects=True)
+
+
+    def update_device_group(self, devicegroupid, name):
+        return self.app.post('/save/devicegroup', data=dict(name=name, devicegroupid=str(devicegroupid)),
                              follow_redirects=True)
 
 
@@ -126,6 +135,19 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.adduser('test','house','f','L', 1)
         assert  rv
 
+
+    def test_add_device_group(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.create_device_group('test group')
+        'test group' in rv.data
+
+
+    def test_edit_device_group(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.update_device_group(1, 'updated sockets')
+        assert 'updated sockets' in rv.data
 
     def test_show_edit_device(self):
         rv = self.login('admin', 'p')
@@ -156,6 +178,12 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'Add Device' in rv.data
 
 
+    def test_show_add_device_group(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.app.get('add/devicegroup')
+        assert 'Add Device Group' in rv.data
+
     def testshowaddroom(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
@@ -173,7 +201,7 @@ class homecontrolTestCase(unittest.TestCase):
     def testcreateroom(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.addroom('test room')
+        rv = self.create_room('test room')
         assert 'test room' in rv.data
 
 
@@ -181,7 +209,7 @@ class homecontrolTestCase(unittest.TestCase):
         roomid = 1
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
-        rv = self.editroom('edited room', roomid)
+        rv = self.save_room('edited room', roomid)
         assert 'edited room' in rv.data
         rv = self.app.get('/')
         assert 'stairs' in rv.data
@@ -211,6 +239,15 @@ class homecontrolTestCase(unittest.TestCase):
         assert 'Logged in' in rv.data
         rv = self.userlist()
         assert 'registered' in rv.data
+
+
+    def test_delete_device_group(self):
+        homecontrol.init_db()
+        homecontrol.init_testdata()
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.delete('devicegroup', 1)
+        assert 'Sockets' not in rv.data
 
     def test_delete_device(self):
         homecontrol.init_db()
@@ -245,6 +282,12 @@ class homecontrolTestCase(unittest.TestCase):
         rv = self.app.get('edit/user/2')
         assert 'registered' in rv.data
 
+
+    def test_edit_device_group(self):
+        rv = self.login('admin', 'p')
+        assert 'Logged in' in rv.data
+        rv = self.app.get('edit/devicegroup/1')
+        assert 'Sockets' in rv.data
 
     def test_auto_allocate(self):
         rv = self.login('admin', 'p')

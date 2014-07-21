@@ -36,3 +36,23 @@ class DeviceGroupFactory():
         dg = devicegroup.DeviceGroup(devicegroup_id, devicegroup_name, devices)
         return dg
 
+
+    def create(self, db, name):
+        cur = db.execute(
+            'INSERT INTO devicegroups (devicegroupname) VALUES (?)', [name])
+        devicegroupid = cur.lastrowid
+        db.commit()
+        return devicegroupid
+
+    def update(self, db, devicegroupid, name):
+        cur = db.execute(
+            'update devicegroups set devicegroupname= ?  where devicegroup_id= ?',
+            [name, devicegroupid])
+        db.commit()
+
+
+    def delete(self, db, devicegroupid):
+        cur = db.execute('delete from device_devicegroup where device_devicegroup.devicegroup_id= ?', [devicegroupid])
+        cur = db.execute('delete from devicegroups where devicegroups.devicegroup_id = ?', [devicegroupid])
+        db.commit()
+

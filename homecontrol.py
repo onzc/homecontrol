@@ -241,6 +241,10 @@ def edit(item, id):
             ugf = usergroupfactory.UserGroupFactory()
             usergroups = ugf.get_user_groups(db)
             return render_template('addedituser.html', user=user, edituser=edituser, usergroups=usergroups)
+        elif item == 'devicegroup':
+            dgf = devicegroupfactory.DeviceGroupFactory()
+            devicegroup = dgf.get_devicegroup(db, id)
+            return render_template('addeditdevicegroup.html', user=user, devicegroup=devicegroup)
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
@@ -269,6 +273,8 @@ def add(item):
             return render_template('addeditdevice.html', user=user, devicegroups=devicegroups, device=None)
         elif item == 'user':
             return render_template('addedituser.html', user=user, edituser=None)
+        elif item == 'devicegroup':
+            return render_template('addeditdevicegroup.html', user=user, devicegroup=None)
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
@@ -290,7 +296,12 @@ def delete(item, id):
             df.delete(db, id)
             return device_list()
         elif item == 'user':
-            pass
+            return user_list()
+        elif item == 'devicegroup':
+            dgf = devicegroupfactory.DeviceGroupFactory()
+            dgf.delete(db, id)
+            return device_group_list()
+
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
@@ -405,9 +416,26 @@ def save(item):
             return save_device(db)
         elif item == 'user':
             return save_user(db)
+        elif item == 'devicegroup':
+            return save_device_group(db)
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
+
+
+def save_device_group(db):
+    if 'save' in request.form:
+        name = request.form['name']
+        devicegroupid = request.form['devicegroupid']
+
+        dgf = devicegroupfactory.DeviceGroupFactory()
+        if devicegroupid == '':
+            devicegroupid = dgf.create(db, name)
+        else:
+            dgf.update(db, devicegroupid, name)
+        return device_group_list()
+    else:
+        return device_group_list()
 
 
 def save_user(db):
