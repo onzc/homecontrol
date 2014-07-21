@@ -1,4 +1,3 @@
-__author__ = 'Andy'
 # all the imports
 import os
 import sqlite3
@@ -10,6 +9,7 @@ import roomfactory
 import roomgroupfactory
 import devicefactory
 import devicegroupfactory
+import usergroupfactory
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash, jsonify
@@ -223,7 +223,9 @@ def edit(item, id):
             return render_template('addeditdevice.html', user=user, devicegroups=devicegroups, device=device)
         elif item == 'user':
             edituser = uf.getuser(db, id)
-            return render_template('addedituser.html', user=user, edituser=edituser)
+            ugf = usergroupfactory.UserGroupFactory()
+            usergroups = ugf.get_user_groups(db)
+            return render_template('addedituser.html', user=user, edituser=edituser, usergroups=usergroups)
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
@@ -387,11 +389,28 @@ def save(item):
         elif item == 'device':
             return save_device(db)
         elif item == 'user':
-            pass
+            return save_user(db)
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
 
+
+def save_user(db):
+    if 'save' in request.form:
+        first = request.form['first']
+        last = request.form['last']
+        username = request.form['username']
+        userid = request.form['userid']
+        password = request.form['password']
+        usergroup = request.form['usergroup']
+        uf = userfactory.Userfactory()
+        if userid == '':
+            userid = uf.createuser(db, username, password, first, last, usergroup)
+        else:
+            uf.update_user(db, userid, username, password, first, last, usergroup)
+        return edit('user', userid)
+    else:
+        return user_list()
 
 def save_device(db):
     if 'save' in request.form:

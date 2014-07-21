@@ -36,3 +36,11 @@ class Userfactory():
         db.execute('insert into users (user_name, password, first_name, last_name, user_group_id) values (?, ?, ?, ? ,?)',
                  [username, password,firstname,lastname, usergroup])
         db.commit()
+
+
+    def update_user(self, db, userid, username, password, firstname, lastname, usergroup):
+        db.execute(
+            'update users set user_name = ?, password = ?, first_name = ?, last_name = ?, user_group_id = ?, user_name = ? where user_id = ?',
+            [username, password, firstname, lastname, usergroup, username, userid])
+        db.commit()
+

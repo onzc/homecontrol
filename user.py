@@ -4,7 +4,11 @@ class User:
     password = ''
     first = ''
     last = ''
-    usergroupid = ''
+    usergroupid = 0
+
+
+
+
     def __init__(self, userid, username, password, first, last, usergroupid):
         self.userid= userid
         self.username = username
