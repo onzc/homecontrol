@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+
+{% endif %}
+<ul data-role="listview" data-inset="true" data-shadow="false">
+    {% for devicegroup in devicegroups %}
+
+    <li><a href="{{ url_for('edit' , item='devicegroup', id=devicegroup.devicegroupid )}}">{{ devicegroup.name }}</a><a
+            href="{{ url_for('delete' , item='devicegroup', id=devicegroup.devicegroupid )}}"
+            data-icon="delete"></a></li>
+
+
+    {% else %}
+    <li><em>Unbelievable. No device groups found so far</em>
+        {% endfor %}
+</ul>
+<a href="{{ url_for('add' , item='devicegroup' )}}" class="ui-btn ui-icon-plus ui-btn-icon-left">add device group</a>
+{% endblock %}

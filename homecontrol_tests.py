@@ -72,6 +72,9 @@ class homecontrolTestCase(unittest.TestCase):
     def devicelist(self):
         return self.app.get('/list/device', follow_redirects=True)
 
+    def devicegrouplist(self):
+        return self.app.get('/list/devicegroup', follow_redirects=True)
+
 
     def userlist(self):
         return self.app.get('/list/user', follow_redirects=True)
@@ -200,6 +203,8 @@ class homecontrolTestCase(unittest.TestCase):
     def test_device_group_list(self):
         rv = self.login('admin', 'p')
         assert 'Logged in' in rv.data
+        rv = self.devicegrouplist()
+        assert 'add device group' in rv.data
 
     def test_user_list(self):
         rv = self.login('admin', 'p')

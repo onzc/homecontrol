@@ -112,6 +112,19 @@ def user_list():
         return render_template('home.html', error=error)
 
 
+def device_group_list():
+    if isloggedin() == True:
+        uf = userfactory.Userfactory()
+        db = get_db()
+        user = uf.getuser(db, session['currentuserid'])
+        dgf = devicegroupfactory.DeviceGroupFactory()
+        devicegroups = dgf.get_devicegroups(db)
+        return render_template('devicegrouplist.html', user=user, devicegroups=devicegroups)
+    else:
+        error = 'Not authorised'
+        return render_template('home.html', error=error)
+
+
 def device_list():
     if isloggedin() == True:
         uf = userfactory.Userfactory()
@@ -192,6 +205,8 @@ def list(item):
             return device_list()
         elif item == 'user':
             return user_list()
+        elif item == 'devicegroup':
+            return device_group_list()
     else:
         error = 'Not authorised'
         return render_template('home.html', error=error)
